@@ -324,6 +324,17 @@ function generateFixes(
       });
     }
 
+    if (weakStats > scorableLinks.length * 0.5) {
+      fixes.push({
+        ruleId: 'aeo-weak-statistics',
+        severity: 'low',
+        title: 'Many pages lack concrete statistics or metrics',
+        explanation: 'Over half of your pages have very few concrete statistics, percentages, or measurements. AI models use these to establish factual authority.',
+        recommendation: 'Incorporate concrete metrics, measurements, or statistics where appropriate in your technical documentation.',
+        pointsImpact: 0,
+      });
+    }
+
     if (weakExtractability > scorableLinks.length * 0.5) {
       fixes.push({
         ruleId: 'aeo-weak-extractability',

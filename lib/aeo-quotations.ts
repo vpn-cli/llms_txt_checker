@@ -35,7 +35,7 @@ export function evaluateQuotations(text: string): number {
   // Scoring
   // Strong quote: 0.8
   // Weak quote: 0.3
-  let rawScore = (strongQuotes * 0.8) + (weakQuotes * 0.3);
+  const rawScore = (strongQuotes * 0.8) + (weakQuotes * 0.3);
 
   return Math.min(1.5, rawScore);
 }

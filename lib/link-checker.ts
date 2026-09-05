@@ -19,7 +19,7 @@ const MAX_LINKS = 50;
 const CONCURRENCY = 5;
 const LINK_TIMEOUT_MS = 8_000;
 
-function extractHtmlContent(body: string): { meaningful: boolean; reason: string; text: string; htmlMetadata?: any } {
+function extractHtmlContent(body: string): { meaningful: boolean; reason: string; text: string; htmlMetadata?: Record<string, number | boolean> } {
   const $ = cheerio.load(body);
   
   // Extract structural metadata BEFORE removing elements (except absolute noise)
@@ -72,8 +72,6 @@ function classifyLink(
   if (error || httpStatus === null) {
     return { classification: 'BROKEN', resolves: false, isHtml: false, isMarkdown: false, hasMeaningful: false, aeoInput: null };
   }
-
-  const resolves = httpStatus < 400;
 
   if (httpStatus >= 500) {
     return { classification: 'SERVER_ERROR', resolves: false, isHtml: false, isMarkdown: false, hasMeaningful: false, aeoInput: null };

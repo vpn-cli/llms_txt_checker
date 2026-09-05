@@ -67,7 +67,6 @@ export async function safeFetch(
     let redirectCount = 0;
     let response: Response;
 
-    // eslint-disable-next-line no-constant-condition
     while (true) {
       response = await fetch(currentUrl, {
         signal: controller.signal,

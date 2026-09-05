@@ -30,7 +30,7 @@ export function evaluateStatistics(text: string): number {
 
   // Score calculation
   // Strong signals are worth 1.0 each, weak are worth 0.2 each
-  let rawScore = (strongSignals * 1.0) + (weakSignals * 0.2);
+  const rawScore = (strongSignals * 1.0) + (weakSignals * 0.2);
 
   // Diminishing returns cap at 2.5
   if (rawScore >= 4.0) return 2.5;
