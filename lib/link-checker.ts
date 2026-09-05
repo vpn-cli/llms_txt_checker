@@ -8,110 +8,147 @@
 import pLimit from 'p-limit';
 import * as cheerio from 'cheerio';
 import { safeFetch } from './fetcher';
-import type { ParsedLink, LinkCheckResult, LinkClassification } from '@/types/audit';
+import { evaluateEvidence } from './aeo-evidence';
+import { evaluateStatistics } from './aeo-statistics';
+import { evaluateQuotations } from './aeo-quotations';
+import { evaluateExtractability, ContentExtractabilityInput } from './aeo-extractability';
+import { evaluateReadability } from './aeo-readability';
+import type { ParsedLink, LinkCheckResult, LinkClassification, AeoScore } from '@/types/audit';
 
 const MAX_LINKS = 50;
 const CONCURRENCY = 5;
 const LINK_TIMEOUT_MS = 8_000;
 
-/**
- * Check whether an HTML response contains meaningful content for a crawler.
- */
-function hasMeaningfulHtml(body: string): { meaningful: boolean; reason: string } {
+function extractHtmlContent(body: string): { meaningful: boolean; reason: string; text: string; htmlMetadata?: any } {
   const $ = cheerio.load(body);
+  
+  // Extract structural metadata BEFORE removing elements (except absolute noise)
+  const titlePresent = $('title').text().trim().length > 0;
+  const h1Count = $('h1').length;
+  const h2h3Count = $('h2, h3').length;
+  const liCount = $('li').length;
+  const tableCount = $('table tr').length; // rows as proxy for table presence/size
+  const pCount = $('p').length;
 
-  // Remove scripts, styles, and nav
-  $('script, style, noscript, nav, footer, header').remove();
+  $('script, style, noscript, nav, footer, header, aside, .cookie-banner').remove();
+  
+  const text = $('body').text().replace(/\s+/g, ' ').trim();
+  const textLength = text.length;
 
-  const bodyText = $('body').text().replace(/\s+/g, ' ').trim();
-  const title = $('title').text().trim();
-
-  // Check for document structure
+  const htmlMetadata = {
+    titlePresent,
+    h1Count,
+    h2h3Count,
+    liCount,
+    tableCount,
+    pCount,
+    textLength
+  };
+  
   const hasBody = $('body').length > 0;
-  const hasText = bodyText.length > 50;
-  const hasTitle = title.length > 0;
-
+  
   if (!hasBody) {
-    return { meaningful: false, reason: 'No <body> element found' };
+    return { meaningful: false, reason: 'No <body> element found', text: '', htmlMetadata };
   }
-
-  if (!hasText && !hasTitle) {
-    return { meaningful: false, reason: 'No meaningful text content (likely an empty shell)' };
+  
+  if (textLength < 50 && !titlePresent) {
+    return { meaningful: false, reason: 'No meaningful text content (likely an empty shell)', text: '', htmlMetadata };
   }
-
-  if (bodyText.length < 50) {
-    return {
-      meaningful: false,
-      reason: `Very little text content (${bodyText.length} chars) — likely an SPA shell or empty page`,
-    };
+  
+  if (textLength < 50) {
+    return { meaningful: false, reason: `Very little text content (${textLength} chars) — likely an SPA shell`, text, htmlMetadata };
   }
-
-  return { meaningful: true, reason: 'Page has meaningful text content' };
+  
+  return { meaningful: true, reason: 'Page has meaningful text content', text, htmlMetadata };
 }
 
-/**
- * Classify a single link check result.
- */
 function classifyLink(
   httpStatus: number | null,
   contentType: string | null,
   body: string | null,
   redirected: boolean,
   error: string | null
-): { classification: LinkClassification; resolves: boolean; isHtml: boolean; isMarkdown: boolean; hasMeaningful: boolean } {
+): { classification: LinkClassification; resolves: boolean; isHtml: boolean; isMarkdown: boolean; hasMeaningful: boolean; aeoInput: ContentExtractabilityInput | null } {
   if (error || httpStatus === null) {
-    return { classification: 'BROKEN', resolves: false, isHtml: false, isMarkdown: false, hasMeaningful: false };
+    return { classification: 'BROKEN', resolves: false, isHtml: false, isMarkdown: false, hasMeaningful: false, aeoInput: null };
   }
 
   const resolves = httpStatus < 400;
 
   if (httpStatus >= 500) {
-    return { classification: 'SERVER_ERROR', resolves: false, isHtml: false, isMarkdown: false, hasMeaningful: false };
+    return { classification: 'SERVER_ERROR', resolves: false, isHtml: false, isMarkdown: false, hasMeaningful: false, aeoInput: null };
   }
 
   if (httpStatus >= 400) {
-    return { classification: 'BROKEN', resolves: false, isHtml: false, isMarkdown: false, hasMeaningful: false };
+    return { classification: 'BROKEN', resolves: false, isHtml: false, isMarkdown: false, hasMeaningful: false, aeoInput: null };
   }
 
   const isHtml = contentType?.includes('text/html') ?? false;
   const isMarkdown = (contentType?.includes('text/markdown') || contentType?.includes('text/plain')) ?? false;
 
   if (!isHtml && !isMarkdown) {
-    // Non-HTML, non-Markdown resource (PDF, JSON, image, etc.)
-    return { classification: 'OTHER_NON_HTML', resolves: true, isHtml: false, isMarkdown: false, hasMeaningful: false };
+    return { classification: 'OTHER_NON_HTML', resolves: true, isHtml: false, isMarkdown: false, hasMeaningful: false, aeoInput: null };
   }
   
-  if (isMarkdown) {
-    return { classification: 'MARKDOWN_CONTENT', resolves: true, isHtml: false, isMarkdown: true, hasMeaningful: true };
+  if (isMarkdown && body) {
+    return { 
+      classification: 'MARKDOWN_CONTENT', resolves: true, isHtml: false, isMarkdown: true, hasMeaningful: true,
+      aeoInput: {
+        text: body,
+        contentType: 'MARKDOWN_CONTENT'
+      }
+    };
   }
 
-  // HTML response — check for meaningful content
-  if (body) {
-    const { meaningful } = hasMeaningfulHtml(body);
-    if (!meaningful) {
-      return { classification: 'EMPTY_HTML', resolves: true, isHtml: true, isMarkdown: false, hasMeaningful: false };
+  if (isHtml && body) {
+    const extracted = extractHtmlContent(body);
+    if (!extracted.meaningful) {
+      return { 
+        classification: 'EMPTY_HTML', resolves: true, isHtml: true, isMarkdown: false, hasMeaningful: false,
+        aeoInput: { text: extracted.text, contentType: 'EMPTY_HTML', htmlMetadata: extracted.htmlMetadata }
+      };
     }
+    return { 
+      classification: 'HTML_CONTENT', resolves: true, isHtml: true, isMarkdown: false, hasMeaningful: true,
+      aeoInput: { text: extracted.text, contentType: 'HTML_CONTENT', htmlMetadata: extracted.htmlMetadata }
+    };
   }
 
-  return { classification: 'HTML_CONTENT', resolves: true, isHtml: true, isMarkdown: false, hasMeaningful: true };
+  return { classification: isHtml ? 'HTML_CONTENT' : 'MARKDOWN_CONTENT', resolves: true, isHtml, isMarkdown, hasMeaningful: true, aeoInput: null };
 }
 
-/**
- * Check a single link.
- */
+function calculateAeoScore(input: ContentExtractabilityInput | null): AeoScore | null {
+  if (!input || input.contentType === 'EMPTY_HTML' || input.contentType === 'OTHER_NON_HTML') {
+    return null;
+  }
+  
+  const evidence = evaluateEvidence(input.text);
+  const statistics = evaluateStatistics(input.text);
+  const quotations = evaluateQuotations(input.text);
+  const extractability = evaluateExtractability(input);
+  const readability = evaluateReadability(input.text);
+  
+  // Total must be accurately summed
+  const total = parseFloat((evidence + statistics + quotations + extractability + readability).toFixed(2));
+  
+  return { evidence, statistics, quotations, extractability, readability, total };
+}
+
 async function checkOneLink(link: ParsedLink): Promise<LinkCheckResult> {
   const fetchResult = await safeFetch(link.url, {
     timeoutMs: LINK_TIMEOUT_MS,
   });
 
   const redirected = fetchResult.finalUrl !== null && fetchResult.finalUrl !== link.url;
-  const { classification, resolves, isHtml, isMarkdown, hasMeaningful } = classifyLink(
+  const { classification, resolves, isHtml, isMarkdown, hasMeaningful, aeoInput } = classifyLink(
     fetchResult.status,
     fetchResult.contentType,
     fetchResult.body,
     redirected,
     fetchResult.error
   );
+
+  const aeoScore = calculateAeoScore(aeoInput);
 
   return {
     title: link.title,
@@ -126,6 +163,7 @@ async function checkOneLink(link: ParsedLink): Promise<LinkCheckResult> {
     isHtml,
     isMarkdown,
     hasMeaningfulContent: hasMeaningful,
+    aeoScore,
     error: fetchResult.error,
   };
 }

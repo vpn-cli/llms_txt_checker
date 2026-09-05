@@ -54,6 +54,7 @@ export default function LinkTable({ links }: LinkTableProps) {
                 <th className="text-left px-4 py-2.5 text-[var(--muted)] font-medium">Status</th>
                 <th className="text-left px-4 py-2.5 text-[var(--muted)] font-medium">HTTP</th>
                 <th className="text-left px-4 py-2.5 text-[var(--muted)] font-medium">Type</th>
+                <th className="text-right px-4 py-2.5 text-[var(--muted)] font-medium">AEO Score</th>
               </tr>
             </thead>
             <tbody>
@@ -81,6 +82,13 @@ export default function LinkTable({ links }: LinkTableProps) {
                   </td>
                   <td className="px-4 py-2.5 font-mono text-[var(--muted)] max-w-[150px] truncate">
                     {link.contentType?.split(';')[0] || '—'}
+                  </td>
+                  <td className="px-4 py-2.5 font-mono text-right text-[var(--foreground)]">
+                    {link.aeoScore ? (
+                      <span className={link.aeoScore.total >= 7 ? 'text-[var(--success)]' : link.aeoScore.total >= 4 ? 'text-[var(--warning)]' : 'text-[var(--error)]'} title={`Ev: ${link.aeoScore.evidence}, Stat: ${link.aeoScore.statistics}, Quo: ${link.aeoScore.quotations}, Ext: ${link.aeoScore.extractability}, Read: ${link.aeoScore.readability}`}>
+                        {link.aeoScore.total.toFixed(1)}/10
+                      </span>
+                    ) : '—'}
                   </td>
                 </tr>
               ))}

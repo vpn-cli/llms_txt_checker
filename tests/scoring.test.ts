@@ -34,7 +34,22 @@ describe('scoring engine', () => {
     };
 
     const links: LinkCheckResult[] = [
-      { title: '', url: '', description: '', section: '', status: 'HTML_CONTENT', httpStatus: 200, finalUrl: null, contentType: 'text/html', resolves: true, isHtml: true, isMarkdown: false, hasMeaningfulContent: true, error: null }
+      { 
+        title: '', 
+        url: '', 
+        description: '', 
+        section: '', 
+        status: 'HTML_CONTENT', 
+        httpStatus: 200, 
+        finalUrl: null, 
+        contentType: 'text/html', 
+        resolves: true, 
+        isHtml: true, 
+        isMarkdown: false, 
+        hasMeaningfulContent: true, 
+        aeoScore: { evidence: 3.0, statistics: 2.5, quotations: 1.5, extractability: 2.0, readability: 1.0, total: 10.0 }, 
+        error: null 
+      }
     ];
 
     const result = calculateScore(llmsTxt, llmsFullTxt, links);

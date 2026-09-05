@@ -127,18 +127,22 @@ function scoreLinkResolution(links: LinkCheckResult[]): number {
 
 /**
  * Calculate the AI/link quality score (heuristic).
+ * Averages the AeoScore for all links that have one.
  */
-function scoreLinkQuality(checks: ValidationCheck[]): number {
-  const heuristicChecks = checks.filter((c) => c.type.includes('heuristic'));
-  if (heuristicChecks.length === 0) return LINK_QUALITY_MAX;
+function scoreLinkQuality(links: LinkCheckResult[]): number {
+  const scorableLinks = links.filter((l) => l.aeoScore != null);
+  if (scorableLinks.length === 0) return 0; // If there are links but none are scorable, it's 0. Wait, if total links is 0, return max.
 
-  let passed = 0;
-  for (const c of heuristicChecks) {
-    if (c.status === 'pass') passed++;
-    else if (c.status === 'warning') passed += 0.5;
+  if (links.length === 0) return LINK_QUALITY_MAX;
+
+  let totalAeoScore = 0;
+  for (const link of scorableLinks) {
+    totalAeoScore += link.aeoScore!.total;
   }
 
-  return Math.round((passed / heuristicChecks.length) * LINK_QUALITY_MAX);
+  // Calculate average out of 10
+  const avg = totalAeoScore / scorableLinks.length;
+  return Math.round(avg * 10) / 10;
 }
 
 /**
@@ -221,6 +225,11 @@ function generateFixes(
   // Structural fixes
   for (const c of checks) {
     if (c.status === 'pass') continue;
+    
+    // Ignore legacy heuristic checks from structural fixes as AEO replaces them
+    if (['descriptive-titles', 'link-descriptions', 'blockquote-quality'].includes(c.ruleId)) {
+      continue;
+    }
 
     let severity: Severity = 'low';
     let pointsImpact = 2;
@@ -291,6 +300,42 @@ function generateFixes(
     });
   }
 
+  // AEO Fixes
+  const scorableLinks = links.filter((l) => l.aeoScore != null);
+  if (scorableLinks.length > 0) {
+    let weakEvidence = 0;
+    let weakStats = 0;
+    let weakExtractability = 0;
+
+    for (const l of scorableLinks) {
+      if (l.aeoScore!.evidence < 1.5) weakEvidence++;
+      if (l.aeoScore!.statistics < 1.0) weakStats++;
+      if (l.aeoScore!.extractability < 1.0) weakExtractability++;
+    }
+
+    if (weakEvidence > scorableLinks.length * 0.5) {
+      fixes.push({
+        ruleId: 'aeo-weak-evidence',
+        severity: 'low',
+        title: 'Many pages lack explicit source attribution',
+        explanation: 'Over half of your pages have weak or missing citations, reference sections, or explicit source attributions. AI models (GEO) look for these signals to establish trust and factual reliability.',
+        recommendation: 'Add clear attribution to facts and claims, and include reference sections where appropriate.',
+        pointsImpact: 0,
+      });
+    }
+
+    if (weakExtractability > scorableLinks.length * 0.5) {
+      fixes.push({
+        ruleId: 'aeo-weak-extractability',
+        severity: 'medium',
+        title: 'Content structure limits AI extractability',
+        explanation: 'Many of your pages lack clear answer-driven structures (e.g., "X provides..."), deep heading hierarchies, or structured definitions. This makes it harder for generative engines to confidently extract your claims.',
+        recommendation: 'Use descriptive headings, lists, and direct answer-style writing (X is Y) in your key documentation pages.',
+        pointsImpact: 0,
+      });
+    }
+  }
+
   // /llms-full.txt
   if (!llmsFullTxt || llmsFullTxt.classification.classification !== 'REAL_MARKDOWN') {
     fixes.push({
@@ -339,12 +384,6 @@ function getRecommendation(ruleId: string): string {
       'Fix any malformed URLs in your link lists. Ensure all URLs are absolute and syntactically correct.',
     'heading-hierarchy':
       'Use a clear H1 → H2 heading structure.',
-    'descriptive-titles':
-      'Use descriptive link titles that explain what each resource contains. Avoid generic titles like "click here".',
-    'link-descriptions':
-      'Add descriptions after your links. Example: - [API Docs](https://...): Complete REST API reference.',
-    'blockquote-quality':
-      'Write a more detailed summary in the blockquote. Aim for at least one full sentence describing your project.',
   };
 
   return recommendations[ruleId] || 'Review and fix this issue.';
@@ -368,9 +407,9 @@ export function calculateScore(
   const authenticity = scoreAuthenticity(llmsTxt, llmsFullTxt);
   const structure = scoreStructure(allChecks);
   const linkResolution = scoreLinkResolution(links);
-  const linkQuality = scoreLinkQuality(allChecks);
+  const linkQuality = scoreLinkQuality(links);
 
-  const score = authenticity + structure + linkResolution + linkQuality;
+  const score = Math.round(authenticity + structure + linkResolution + linkQuality);
   const grade = scoreToGrade(score);
 
   const breakdown: ScoreBreakdown = {

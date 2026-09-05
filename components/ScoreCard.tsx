@@ -84,7 +84,7 @@ export default function ScoreCard({ score, grade, breakdown }: ScoreCardProps) {
         <BreakdownBar label="Authenticity" value={breakdown.authenticity} max={breakdown.authenticityMax} />
         <BreakdownBar label="Structure" value={breakdown.structure} max={breakdown.structureMax} />
         <BreakdownBar label="Link Resolution" value={breakdown.linkResolution} max={breakdown.linkResolutionMax} />
-        <BreakdownBar label="Link Quality" value={breakdown.linkQuality} max={breakdown.linkQualityMax} />
+        <BreakdownBar label="AI/Link Quality" value={breakdown.linkQuality} max={breakdown.linkQualityMax} />
       </div>
     </div>
   );

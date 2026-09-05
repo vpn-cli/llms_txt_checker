@@ -84,6 +84,16 @@ export interface ValidationCheck {
   message: string;
 }
 
+// ─── AEO / AI-Link Quality ────────────────────────────────────────────
+export interface AeoScore {
+  evidence: number;        // Max 3.0
+  statistics: number;      // Max 2.5
+  quotations: number;      // Max 1.5
+  extractability: number;  // Max 2.0
+  readability: number;     // Max 1.0
+  total: number;           // Max 10.0
+}
+
 // ─── Link Checking ──────────────────────────────────────────────────
 export interface LinkCheckResult {
   title: string;
@@ -98,6 +108,7 @@ export interface LinkCheckResult {
   isHtml: boolean;
   isMarkdown: boolean;
   hasMeaningfulContent: boolean;
+  aeoScore: AeoScore | null;
   error: string | null;
 }
 

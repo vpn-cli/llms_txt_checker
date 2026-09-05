@@ -45,11 +45,18 @@ This checker distinguishes specification compliance from assignment-specific cra
   - Redirects or `OTHER_NON_HTML` receive partial points.
   - `EMPTY_HTML` (SPA shells) and broken links receive 0 points.
 
-### 4. AI/Link Quality (10 Points)
-- **What is checked:** The length of descriptions, strength of titles, and assignment-specific requirements.
-- **Why it matters:** Descriptive link titles and summaries help RAG/LLM systems understand what each resource contains before fetching it.
-- **Source:** `assignment requirement` (HTML constraint) and `heuristic` (title/description quality).
-- **Scoring:** Points awarded for descriptive link titles and link descriptions. 
+### 4. AI-Link Quality / AEO Content Layer (10 Points)
+- **What is checked:** The deterministic *extractability* of the crawled content at the destination URL, using a research-informed AEO (Artificial Engine Optimization) scoring model.
+- **Why it matters:** A technically valid `llms.txt` can still point to weak content. To ensure maximum AI visibility and trust, the linked content itself must be easily extractable and factually grounded.
+- **Source:** Inspired by recent AEO research, including *GEO: Generative Engine Optimization* (KDD 2024), we evaluate linked pages on 5 deterministic dimensions:
+  - **Evidence (3.0 pts):** Explicit source attribution, reference sections, and citations.
+  - **Statistics (2.5 pts):** Concrete facts, percentages, currency, and quantities.
+  - **Quotations (1.5 pts):** Attributed quotes and statements.
+  - **Extractability (2.0 pts):** Answer-driven phrasing ("X is...") and structural hierarchy (H2s/H3s).
+  - **Readability (1.0 pts):** Lightweight Flesch Reading Ease approximation.
+- **Scoring:** The final AI-Link Quality score is the average AEO score across all linked `HTML_CONTENT` and `MARKDOWN_CONTENT` pages.
+- **Methodological Guardrails:** This tool evaluates *deterministic, extractable signals* using heuristics (regex and text analysis). It does **not** use LLM-as-a-judge, embeddings, or make claims about predicting actual AI search engine rankings. It simply enforces structural content best practices that align with generative engine preferences.
+
   - **Assignment-Specific Check:** If a link resolves to a valid Markdown file (e.g. `MARKDOWN_CONTENT`), it is highly useful for AI, but it triggers an assignment-specific warning because it does not satisfy the literal assignment requirement to "serve real HTML to a crawler." This provides nuance without intrinsically penalizing valid LLM-friendly resources.
 
 ---
