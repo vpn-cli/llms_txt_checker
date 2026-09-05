@@ -13,13 +13,13 @@ import { evaluateStatistics } from './aeo-statistics';
 import { evaluateQuotations } from './aeo-quotations';
 import { evaluateExtractability, ContentExtractabilityInput } from './aeo-extractability';
 import { evaluateReadability } from './aeo-readability';
-import type { ParsedLink, LinkCheckResult, LinkClassification, AeoScore } from '@/types/audit';
+import type { ParsedLink, LinkCheckResult, LinkClassification, AeoScore, HtmlMetadata } from '@/types/audit';
 
 const MAX_LINKS = 50;
 const CONCURRENCY = 5;
 const LINK_TIMEOUT_MS = 8_000;
 
-function extractHtmlContent(body: string): { meaningful: boolean; reason: string; text: string; htmlMetadata?: Record<string, number | boolean> } {
+function extractHtmlContent(body: string): { meaningful: boolean; reason: string; text: string; htmlMetadata?: HtmlMetadata } {
   const $ = cheerio.load(body);
   
   // Extract structural metadata BEFORE removing elements (except absolute noise)

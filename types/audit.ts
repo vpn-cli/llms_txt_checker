@@ -112,6 +112,16 @@ export interface LinkCheckResult {
   error: string | null;
 }
 
+export interface HtmlMetadata {
+  titlePresent: boolean;
+  h1Count: number;
+  h2h3Count: number;
+  liCount: number;
+  tableCount: number;
+  pCount: number;
+  textLength: number;
+}
+
 // ─── Scoring ────────────────────────────────────────────────────────
 export interface ScoreBreakdown {
   authenticity: number;
