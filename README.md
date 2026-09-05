@@ -80,9 +80,9 @@ This checker distinguishes specification compliance from assignment-specific cra
 
 ## Live Audit
 
-To run a live static audit from the CLI against a domain:
+To run a live static audit from the CLI against a domain (defaults to `infrasity.com`):
 ```bash
-npx tsx scripts/live-audit.ts
+npx tsx scripts/live-audit.ts [domain.com]
 ```
 
 ---

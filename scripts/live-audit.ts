@@ -1,7 +1,7 @@
 import { runAudit } from '../lib/audit';
 
 async function main() {
-  const domain = 'infrasity.com';
+  const domain = process.argv[2] || 'infrasity.com';
   console.log(`Starting live audit for ${domain}...\n`);
 
   try {
