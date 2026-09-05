@@ -84,3 +84,18 @@ To run a live static audit from the CLI against a domain:
 ```bash
 npx tsx scripts/live-audit.ts
 ```
+
+---
+
+## Infrasity Audit Results
+
+A live audit against `infrasity.com` produces the following result:
+
+- **Technical Compliance**: 90/90 (Perfect Score)
+- **AI/Link Quality (AEO)**: 4.4 / 10
+- **Total Score**: 94/100 (Grade: A)
+
+### Interpretation
+The 90/90 technical score demonstrates that Infrasity satisfies all literal llms.txt protocol requirements (valid H1, valid formatting, healthy HTML targets, etc.). The 4.4/10 AEO score indicates that while the infrastructure is perfect, the actual content found at the destination marketing URLs lacks academic evidence, source attributions, and deep extractability structures compared to technical documentation standards. 
+
+This nuanced score highlights the checker's ability to cleanly decouple **protocol compliance** from **content quality**.
