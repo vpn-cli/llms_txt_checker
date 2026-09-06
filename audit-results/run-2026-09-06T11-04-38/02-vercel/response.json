@@ -1,0 +1,841 @@
+{
+  "_testMetadata": {
+    "domain": "vercel.com",
+    "timestamp": "2026-09-06T11:04:50.078Z",
+    "durationMs": 5577,
+    "httpStatus": 200
+  },
+  "domain": "vercel.com",
+  "score": 89,
+  "grade": "B",
+  "scoreBreakdown": {
+    "authenticity": 40,
+    "authenticityMax": 40,
+    "structure": 25,
+    "structureMax": 25,
+    "linkResolution": 20,
+    "linkResolutionMax": 25,
+    "linkQuality": 3.7,
+    "linkQualityMax": 10
+  },
+  "files": {
+    "llmsTxt": {
+      "url": "https://vercel.com/llms.txt",
+      "exists": true,
+      "fileStatus": "Valid",
+      "httpStatus": 200,
+      "contentType": "text/plain; charset=utf-8",
+      "finalUrl": null,
+      "size": 3507,
+      "classification": {
+        "classification": "REAL_MARKDOWN",
+        "confidence": 0.95,
+        "reasons": [
+          "Content-type is text, content has Markdown structure"
+        ]
+      },
+      "parsed": {
+        "h1": "Vercel",
+        "blockquote": "Vercel is a cloud platform for building, deploying, and scaling web applications and AI workloads.",
+        "sections": [
+          {
+            "heading": "When to use Vercel",
+            "level": 2,
+            "links": [],
+            "content": ""
+          },
+          {
+            "heading": "How agents should use Vercel",
+            "level": 2,
+            "links": [],
+            "content": ""
+          },
+          {
+            "heading": "Documentation",
+            "level": 2,
+            "links": [
+              {
+                "title": "Vercel product documentation",
+                "url": "https://vercel.com/docs/products.md",
+                "description": "Curated product index with links to documentation.",
+                "section": "Documentation"
+              },
+              {
+                "title": "Documentation sitemap",
+                "url": "https://vercel.com/docs/sitemap.md",
+                "description": "Documentation pages with summaries and prerequisites.",
+                "section": "Documentation"
+              },
+              {
+                "title": "Full documentation content",
+                "url": "https://vercel.com/docs/llms-full.txt",
+                "description": "Complete documentation and REST API reference in one file.",
+                "section": "Documentation"
+              }
+            ],
+            "content": ""
+          },
+          {
+            "heading": "REST API and developer resources",
+            "level": 2,
+            "links": [
+              {
+                "title": "Vercel REST API documentation",
+                "url": "https://vercel.com/docs/rest-api.md",
+                "description": "Endpoint reference for the public Vercel REST API.",
+                "section": "REST API and developer resources"
+              },
+              {
+                "title": "Vercel REST API OpenAPI description",
+                "url": "https://openapi.vercel.sh/",
+                "description": "Machine-readable OpenAPI 3.0 description for the public REST API.",
+                "section": "REST API and developer resources"
+              },
+              {
+                "title": "Vercel REST API authentication",
+                "url": "https://vercel.com/docs/accounts/access-tokens.md#use-a-scoped-token-with-the-api",
+                "description": "Create scoped access tokens and use them as Bearer tokens in API requests.",
+                "section": "REST API and developer resources"
+              },
+              {
+                "title": "Vercel webhook documentation",
+                "url": "https://vercel.com/docs/webhooks.md",
+                "description": "Event subscriptions, payloads, and delivery behavior.",
+                "section": "REST API and developer resources"
+              },
+              {
+                "title": "Vercel MCP server",
+                "url": "https://vercel.com/docs/agent-resources/vercel-mcp.md",
+                "description": "OAuth-authenticated tools for Vercel documentation and account resources.",
+                "section": "REST API and developer resources"
+              }
+            ],
+            "content": ""
+          },
+          {
+            "heading": "Self-serve onboarding",
+            "level": 2,
+            "links": [
+              {
+                "title": "Vercel Hobby plan",
+                "url": "https://vercel.com/docs/plans/hobby.md",
+                "description": "Free plan for non-commercial personal projects.",
+                "section": "Self-serve onboarding"
+              },
+              {
+                "title": "Vercel CLI tokens",
+                "url": "https://vercel.com/docs/cli/tokens.md",
+                "description": "Create and manage personal access tokens for the Vercel API and CLI.",
+                "section": "Self-serve onboarding"
+              },
+              {
+                "title": "Vercel Sandbox",
+                "url": "https://vercel.com/docs/sandbox.md",
+                "description": "Isolated compute for running code and agent workloads.",
+                "section": "Self-serve onboarding"
+              }
+            ],
+            "content": ""
+          },
+          {
+            "heading": "Knowledge Base",
+            "level": 2,
+            "links": [
+              {
+                "title": "Knowledge Base sitemap",
+                "url": "https://vercel.com/kb/sitemap.md",
+                "description": "Troubleshooting guides, topics, videos, bulletins, and product references.",
+                "section": "Knowledge Base"
+              }
+            ],
+            "content": ""
+          },
+          {
+            "heading": "Learning and updates",
+            "level": 2,
+            "links": [
+              {
+                "title": "Vercel Academy",
+                "url": "https://vercel.com/academy/llms.txt",
+                "description": "Courses and learning paths.",
+                "section": "Learning and updates"
+              },
+              {
+                "title": "Vercel Blog sitemap",
+                "url": "https://vercel.com/blog/sitemap.md",
+                "description": "Articles, engineering posts, and product announcements.",
+                "section": "Learning and updates"
+              },
+              {
+                "title": "Vercel Changelog sitemap",
+                "url": "https://vercel.com/changelog/sitemap.md",
+                "description": "Product updates and release notes.",
+                "section": "Learning and updates"
+              }
+            ],
+            "content": ""
+          },
+          {
+            "heading": "Optional",
+            "level": 2,
+            "links": [
+              {
+                "title": "Agent resource catalog",
+                "url": "https://vercel.com/.well-known/ai-catalog.json",
+                "description": "Experimental catalog of agent-facing resources.",
+                "section": "Optional"
+              },
+              {
+                "title": "Product taxonomy",
+                "url": "https://vercel.com/docs/taxonomy.json",
+                "description": "Canonical product names, aliases, and deprecations.",
+                "section": "Optional"
+              },
+              {
+                "title": "Documentation graph",
+                "url": "https://vercel.com/docs/graph.json",
+                "description": "Cross-site links, prerequisites, semantic neighbors, and related pages.",
+                "section": "Optional"
+              }
+            ],
+            "content": ""
+          }
+        ],
+        "links": [
+          {
+            "title": "Vercel product documentation",
+            "url": "https://vercel.com/docs/products.md",
+            "description": "Curated product index with links to documentation.",
+            "section": "Documentation"
+          },
+          {
+            "title": "Documentation sitemap",
+            "url": "https://vercel.com/docs/sitemap.md",
+            "description": "Documentation pages with summaries and prerequisites.",
+            "section": "Documentation"
+          },
+          {
+            "title": "Full documentation content",
+            "url": "https://vercel.com/docs/llms-full.txt",
+            "description": "Complete documentation and REST API reference in one file.",
+            "section": "Documentation"
+          },
+          {
+            "title": "Vercel REST API documentation",
+            "url": "https://vercel.com/docs/rest-api.md",
+            "description": "Endpoint reference for the public Vercel REST API.",
+            "section": "REST API and developer resources"
+          },
+          {
+            "title": "Vercel REST API OpenAPI description",
+            "url": "https://openapi.vercel.sh/",
+            "description": "Machine-readable OpenAPI 3.0 description for the public REST API.",
+            "section": "REST API and developer resources"
+          },
+          {
+            "title": "Vercel REST API authentication",
+            "url": "https://vercel.com/docs/accounts/access-tokens.md#use-a-scoped-token-with-the-api",
+            "description": "Create scoped access tokens and use them as Bearer tokens in API requests.",
+            "section": "REST API and developer resources"
+          },
+          {
+            "title": "Vercel webhook documentation",
+            "url": "https://vercel.com/docs/webhooks.md",
+            "description": "Event subscriptions, payloads, and delivery behavior.",
+            "section": "REST API and developer resources"
+          },
+          {
+            "title": "Vercel MCP server",
+            "url": "https://vercel.com/docs/agent-resources/vercel-mcp.md",
+            "description": "OAuth-authenticated tools for Vercel documentation and account resources.",
+            "section": "REST API and developer resources"
+          },
+          {
+            "title": "Vercel Hobby plan",
+            "url": "https://vercel.com/docs/plans/hobby.md",
+            "description": "Free plan for non-commercial personal projects.",
+            "section": "Self-serve onboarding"
+          },
+          {
+            "title": "Vercel CLI tokens",
+            "url": "https://vercel.com/docs/cli/tokens.md",
+            "description": "Create and manage personal access tokens for the Vercel API and CLI.",
+            "section": "Self-serve onboarding"
+          },
+          {
+            "title": "Vercel Sandbox",
+            "url": "https://vercel.com/docs/sandbox.md",
+            "description": "Isolated compute for running code and agent workloads.",
+            "section": "Self-serve onboarding"
+          },
+          {
+            "title": "Knowledge Base sitemap",
+            "url": "https://vercel.com/kb/sitemap.md",
+            "description": "Troubleshooting guides, topics, videos, bulletins, and product references.",
+            "section": "Knowledge Base"
+          },
+          {
+            "title": "Vercel Academy",
+            "url": "https://vercel.com/academy/llms.txt",
+            "description": "Courses and learning paths.",
+            "section": "Learning and updates"
+          },
+          {
+            "title": "Vercel Blog sitemap",
+            "url": "https://vercel.com/blog/sitemap.md",
+            "description": "Articles, engineering posts, and product announcements.",
+            "section": "Learning and updates"
+          },
+          {
+            "title": "Vercel Changelog sitemap",
+            "url": "https://vercel.com/changelog/sitemap.md",
+            "description": "Product updates and release notes.",
+            "section": "Learning and updates"
+          },
+          {
+            "title": "Agent resource catalog",
+            "url": "https://vercel.com/.well-known/ai-catalog.json",
+            "description": "Experimental catalog of agent-facing resources.",
+            "section": "Optional"
+          },
+          {
+            "title": "Product taxonomy",
+            "url": "https://vercel.com/docs/taxonomy.json",
+            "description": "Canonical product names, aliases, and deprecations.",
+            "section": "Optional"
+          },
+          {
+            "title": "Documentation graph",
+            "url": "https://vercel.com/docs/graph.json",
+            "description": "Cross-site links, prerequisites, semantic neighbors, and related pages.",
+            "section": "Optional"
+          }
+        ],
+        "raw": "# Vercel\n\n> Vercel is a cloud platform for building, deploying, and scaling web applications and AI workloads.\n\nUse this index to find machine-readable documentation and platform resources. Follow the linked indexes when you need individual pages.\n\n## When to use Vercel\n\n- Deploy and scale web applications, APIs, and AI workloads from a Git repository or the Vercel CLI.\n- Automate projects, deployments, domains, and account resources through the Vercel REST API or SDK.\n- Connect an authenticated AI assistant to Vercel projects, deployments, logs, analytics, and documentation through Vercel MCP.\n- Run untrusted or agent-generated code in isolated Vercel Sandboxes.\n\n## How agents should use Vercel\n\n- For research, fetch the Markdown documentation indexes below and follow their links to individual Markdown pages.\n- For REST API calls, read the OpenAPI description and authentication documentation before choosing an operation. Ask for approval before changing account resources.\n- For Vercel MCP, use an OAuth-capable MCP client and let the user authorize access to their Vercel account.\n\n## Documentation\n\n- [Vercel product documentation](https://vercel.com/docs/products.md): Curated product index with links to documentation.\n- [Documentation sitemap](https://vercel.com/docs/sitemap.md): Documentation pages with summaries and prerequisites.\n- [Full documentation content](https://vercel.com/docs/llms-full.txt): Complete documentation and REST API reference in one file.\n\n## REST API and developer resources\n\n- [Vercel REST API documentation](https://vercel.com/docs/rest-api.md): Endpoint reference for the public Vercel REST API.\n- [Vercel REST API OpenAPI description](https://openapi.vercel.sh/): Machine-readable OpenAPI 3.0 description for the public REST API.\n- [Vercel REST API authentication](https://vercel.com/docs/accounts/access-tokens.md#use-a-scoped-token-with-the-api): Create scoped access tokens and use them as Bearer tokens in API requests.\n- [Vercel webhook documentation](https://vercel.com/docs/webhooks.md): Event subscriptions, payloads, and delivery behavior.\n- [Vercel MCP server](https://vercel.com/docs/agent-resources/vercel-mcp.md): OAuth-authenticated tools for Vercel documentation and account resources.\n\n## Self-serve onboarding\n\n- [Vercel Hobby plan](https://vercel.com/docs/plans/hobby.md): Free plan for non-commercial personal projects.\n- [Vercel CLI tokens](https://vercel.com/docs/cli/tokens.md): Create and manage personal access tokens for the Vercel API and CLI.\n- [Vercel Sandbox](https://vercel.com/docs/sandbox.md): Isolated compute for running code and agent workloads.\n\n## Knowledge Base\n\n- [Knowledge Base sitemap](https://vercel.com/kb/sitemap.md): Troubleshooting guides, topics, videos, bulletins, and product references.\n\n## Learning and updates\n\n- [Vercel Academy](https://vercel.com/academy/llms.txt): Courses and learning paths.\n- [Vercel Blog sitemap](https://vercel.com/blog/sitemap.md): Articles, engineering posts, and product announcements.\n- [Vercel Changelog sitemap](https://vercel.com/changelog/sitemap.md): Product updates and release notes.\n\n## Optional\n\n- [Agent resource catalog](https://vercel.com/.well-known/ai-catalog.json): Experimental catalog of agent-facing resources.\n- [Product taxonomy](https://vercel.com/docs/taxonomy.json): Canonical product names, aliases, and deprecations.\n- [Documentation graph](https://vercel.com/docs/graph.json): Cross-site links, prerequisites, semantic neighbors, and related pages.\n"
+      },
+      "checks": [
+        {
+          "ruleId": "h1-exists",
+          "type": "proposal-required",
+          "status": "pass",
+          "title": "H1 heading exists",
+          "message": "H1 found: \"Vercel\""
+        },
+        {
+          "ruleId": "h1-first",
+          "type": "proposal-required",
+          "status": "pass",
+          "title": "H1 is the first heading",
+          "message": "H1 appears as the first heading in the document"
+        },
+        {
+          "ruleId": "blockquote-exists",
+          "type": "proposal-optional",
+          "status": "pass",
+          "title": "Summary blockquote exists",
+          "message": "Summary blockquote found after H1"
+        },
+        {
+          "ruleId": "h2-sections",
+          "type": "proposal-optional",
+          "status": "pass",
+          "title": "H2 sections",
+          "message": "8 H2 section(s) found: \"When to use Vercel\", \"How agents should use Vercel\", \"Documentation\", \"REST API and developer resources\", \"Self-serve onboarding\", \"Knowledge Base\", \"Learning and updates\", \"Optional\""
+        },
+        {
+          "ruleId": "h2-has-links",
+          "type": "proposal-required",
+          "status": "pass",
+          "title": "H2 sections contain link lists",
+          "message": "6/8 section(s) contain Markdown links"
+        },
+        {
+          "ruleId": "links-present",
+          "type": "proposal-required",
+          "status": "pass",
+          "title": "Markdown hyperlinks present in sections",
+          "message": "18 Markdown link(s) found"
+        },
+        {
+          "ruleId": "urls-valid",
+          "type": "proposal-required",
+          "status": "pass",
+          "title": "URLs are syntactically valid",
+          "message": "All URLs are syntactically valid"
+        },
+        {
+          "ruleId": "heading-hierarchy",
+          "type": "proposal-required",
+          "status": "pass",
+          "title": "Heading hierarchy",
+          "message": "Document follows a reasonable heading hierarchy (H1 → H2)"
+        },
+        {
+          "ruleId": "descriptive-titles",
+          "type": "assignment-heuristic",
+          "status": "pass",
+          "title": "Link titles are descriptive",
+          "message": "All link titles are descriptive"
+        },
+        {
+          "ruleId": "link-descriptions",
+          "type": "assignment-heuristic",
+          "status": "pass",
+          "title": "Links have descriptions",
+          "message": "18/18 link(s) have descriptions"
+        },
+        {
+          "ruleId": "blockquote-quality",
+          "type": "assignment-heuristic",
+          "status": "pass",
+          "title": "Summary blockquote is meaningful",
+          "message": "Summary blockquote is 98 characters — provides useful context"
+        }
+      ],
+      "error": null,
+      "generatedDraft": null
+    },
+    "llmsFullTxt": {
+      "url": "https://vercel.com/llms-full.txt",
+      "exists": true,
+      "fileStatus": "Misconfigured",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=utf-8",
+      "finalUrl": null,
+      "size": 2471594,
+      "classification": {
+        "classification": "SPA_SHELL",
+        "confidence": 0.4,
+        "reasons": [
+          "Response is 69% similar to random probe path — moderate SPA shell evidence",
+          "HTML content-type returned for a .txt file request"
+        ]
+      },
+      "parsed": null,
+      "checks": [],
+      "error": null,
+      "generatedDraft": null
+    }
+  },
+  "links": [
+    {
+      "title": "Vercel product documentation",
+      "url": "https://vercel.com/docs/products.md",
+      "description": "Curated product index with links to documentation.",
+      "section": "Documentation",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/markdown; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 0.5,
+        "quotations": 0.3,
+        "extractability": 1,
+        "readability": 0,
+        "total": 1.8
+      },
+      "error": null
+    },
+    {
+      "title": "Documentation sitemap",
+      "url": "https://vercel.com/docs/sitemap.md",
+      "description": "Documentation pages with summaries and prerequisites.",
+      "section": "Documentation",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/markdown; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 2.5,
+        "quotations": 0,
+        "extractability": 1.75,
+        "readability": 0,
+        "total": 4.25
+      },
+      "error": null
+    },
+    {
+      "title": "Full documentation content",
+      "url": "https://vercel.com/docs/llms-full.txt",
+      "description": "Complete documentation and REST API reference in one file.",
+      "section": "Documentation",
+      "status": "BROKEN",
+      "httpStatus": 200,
+      "finalUrl": "https://vercel.com/docs/llms-full.txt",
+      "contentType": "text/plain; charset=utf-8",
+      "resolves": false,
+      "isHtml": false,
+      "isMarkdown": false,
+      "hasMeaningfulContent": false,
+      "aeoScore": null,
+      "error": "Response too large: 8514779 bytes"
+    },
+    {
+      "title": "Vercel REST API documentation",
+      "url": "https://vercel.com/docs/rest-api.md",
+      "description": "Endpoint reference for the public Vercel REST API.",
+      "section": "REST API and developer resources",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/markdown; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 0.5,
+        "quotations": 0.8,
+        "extractability": 1.25,
+        "readability": 0,
+        "total": 2.55
+      },
+      "error": null
+    },
+    {
+      "title": "Vercel REST API OpenAPI description",
+      "url": "https://openapi.vercel.sh/",
+      "description": "Machine-readable OpenAPI 3.0 description for the public REST API.",
+      "section": "REST API and developer resources",
+      "status": "BROKEN",
+      "httpStatus": 200,
+      "finalUrl": "https://openapi.vercel.sh/",
+      "contentType": "application/json; charset=utf-8",
+      "resolves": false,
+      "isHtml": false,
+      "isMarkdown": false,
+      "hasMeaningfulContent": false,
+      "aeoScore": null,
+      "error": "Response too large: 10717362 bytes"
+    },
+    {
+      "title": "Vercel REST API authentication",
+      "url": "https://vercel.com/docs/accounts/access-tokens.md#use-a-scoped-token-with-the-api",
+      "description": "Create scoped access tokens and use them as Bearer tokens in API requests.",
+      "section": "REST API and developer resources",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/markdown; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 0.5,
+        "quotations": 1.5,
+        "extractability": 1.25,
+        "readability": 0.5,
+        "total": 3.75
+      },
+      "error": null
+    },
+    {
+      "title": "Vercel webhook documentation",
+      "url": "https://vercel.com/docs/webhooks.md",
+      "description": "Event subscriptions, payloads, and delivery behavior.",
+      "section": "REST API and developer resources",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/markdown; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 0.5,
+        "quotations": 0.6,
+        "extractability": 1.4,
+        "readability": 0,
+        "total": 2.5
+      },
+      "error": null
+    },
+    {
+      "title": "Vercel MCP server",
+      "url": "https://vercel.com/docs/agent-resources/vercel-mcp.md",
+      "description": "OAuth-authenticated tools for Vercel documentation and account resources.",
+      "section": "REST API and developer resources",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/markdown; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 1,
+        "quotations": 1.5,
+        "extractability": 1.4,
+        "readability": 0.5,
+        "total": 4.4
+      },
+      "error": null
+    },
+    {
+      "title": "Vercel Hobby plan",
+      "url": "https://vercel.com/docs/plans/hobby.md",
+      "description": "Free plan for non-commercial personal projects.",
+      "section": "Self-serve onboarding",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/markdown; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 1,
+        "quotations": 0.3,
+        "extractability": 2,
+        "readability": 0,
+        "total": 3.3
+      },
+      "error": null
+    },
+    {
+      "title": "Vercel CLI tokens",
+      "url": "https://vercel.com/docs/cli/tokens.md",
+      "description": "Create and manage personal access tokens for the Vercel API and CLI.",
+      "section": "Self-serve onboarding",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/markdown; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 0.5,
+        "quotations": 1.5,
+        "extractability": 1.65,
+        "readability": 0.8,
+        "total": 4.45
+      },
+      "error": null
+    },
+    {
+      "title": "Vercel Sandbox",
+      "url": "https://vercel.com/docs/sandbox.md",
+      "description": "Isolated compute for running code and agent workloads.",
+      "section": "Self-serve onboarding",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/markdown; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 0.5,
+        "quotations": 0.3,
+        "extractability": 1,
+        "readability": 0,
+        "total": 1.8
+      },
+      "error": null
+    },
+    {
+      "title": "Knowledge Base sitemap",
+      "url": "https://vercel.com/kb/sitemap.md",
+      "description": "Troubleshooting guides, topics, videos, bulletins, and product references.",
+      "section": "Knowledge Base",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/markdown; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 2.5,
+        "quotations": 1.5,
+        "extractability": 1.75,
+        "readability": 0.5,
+        "total": 6.25
+      },
+      "error": null
+    },
+    {
+      "title": "Vercel Academy",
+      "url": "https://vercel.com/academy/llms.txt",
+      "description": "Courses and learning paths.",
+      "section": "Learning and updates",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/plain; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 1.5,
+        "quotations": 0.8,
+        "extractability": 1.75,
+        "readability": 0,
+        "total": 4.05
+      },
+      "error": null
+    },
+    {
+      "title": "Vercel Blog sitemap",
+      "url": "https://vercel.com/blog/sitemap.md",
+      "description": "Articles, engineering posts, and product announcements.",
+      "section": "Learning and updates",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/markdown; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 2.5,
+        "quotations": 0.8,
+        "extractability": 1.75,
+        "readability": 0,
+        "total": 5.05
+      },
+      "error": null
+    },
+    {
+      "title": "Vercel Changelog sitemap",
+      "url": "https://vercel.com/changelog/sitemap.md",
+      "description": "Product updates and release notes.",
+      "section": "Learning and updates",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/markdown; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 2.5,
+        "quotations": 0,
+        "extractability": 1.75,
+        "readability": 0,
+        "total": 4.25
+      },
+      "error": null
+    },
+    {
+      "title": "Agent resource catalog",
+      "url": "https://vercel.com/.well-known/ai-catalog.json",
+      "description": "Experimental catalog of agent-facing resources.",
+      "section": "Optional",
+      "status": "OTHER_NON_HTML",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "application/ai-catalog+json",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": false,
+      "hasMeaningfulContent": false,
+      "aeoScore": null,
+      "error": null
+    },
+    {
+      "title": "Product taxonomy",
+      "url": "https://vercel.com/docs/taxonomy.json",
+      "description": "Canonical product names, aliases, and deprecations.",
+      "section": "Optional",
+      "status": "OTHER_NON_HTML",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "application/json",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": false,
+      "hasMeaningfulContent": false,
+      "aeoScore": null,
+      "error": null
+    },
+    {
+      "title": "Documentation graph",
+      "url": "https://vercel.com/docs/graph.json",
+      "description": "Cross-site links, prerequisites, semantic neighbors, and related pages.",
+      "section": "Optional",
+      "status": "BROKEN",
+      "httpStatus": 200,
+      "finalUrl": "https://vercel.com/docs/graph.json",
+      "contentType": "application/json",
+      "resolves": false,
+      "isHtml": false,
+      "isMarkdown": false,
+      "hasMeaningfulContent": false,
+      "aeoScore": null,
+      "error": "Response too large: 10108284 bytes"
+    }
+  ],
+  "fixes": [
+    {
+      "ruleId": "broken-links",
+      "severity": "high",
+      "title": "3 linked page(s) are broken",
+      "explanation": "The following URLs return errors or are unreachable: https://vercel.com/docs/llms-full.txt, https://openapi.vercel.sh/, https://vercel.com/docs/graph.json. This reduces crawl reliability and creates an unreliable retrieval path.",
+      "recommendation": "Fix or remove broken links. Ensure all linked URLs return healthy responses.",
+      "pointsImpact": 9
+    },
+    {
+      "ruleId": "markdown-links-assignment",
+      "severity": "medium",
+      "title": "13 linked page(s) serve Markdown instead of HTML",
+      "explanation": "These URLs serve Markdown text directly: https://vercel.com/docs/products.md, https://vercel.com/docs/sitemap.md, https://vercel.com/docs/rest-api.md, https://vercel.com/docs/accounts/access-tokens.md#use-a-scoped-token-with-the-api, https://vercel.com/docs/webhooks.md, https://vercel.com/docs/agent-resources/vercel-mcp.md, https://vercel.com/docs/plans/hobby.md, https://vercel.com/docs/cli/tokens.md, https://vercel.com/docs/sandbox.md, https://vercel.com/kb/sitemap.md, https://vercel.com/academy/llms.txt, https://vercel.com/blog/sitemap.md, https://vercel.com/changelog/sitemap.md. While this is valid under llms.txt proposal semantics, the assignment requirement expects linked URLs to serve real HTML.",
+      "recommendation": "To satisfy the specific assignment constraint, ensure that your linked resources are served as HTML pages.",
+      "pointsImpact": 0
+    },
+    {
+      "ruleId": "aeo-weak-evidence",
+      "severity": "low",
+      "title": "Many pages lack explicit source attribution",
+      "explanation": "Over half of your pages have weak or missing citations, reference sections, or explicit source attributions. This heuristic measures observable content characteristics; it does not predict citation behavior.",
+      "recommendation": "Add clear attribution to facts and claims, and include reference sections where appropriate.",
+      "pointsImpact": 0
+    }
+  ],
+  "summary": {
+    "passed": 11,
+    "warnings": 0,
+    "failed": 0,
+    "linkStats": {
+      "markdownReferences": 18,
+      "uniqueUrls": 18,
+      "auditedUrls": 18,
+      "healthy": 13,
+      "broken": 3,
+      "unclassified": 2
+    }
+  },
+  "timestamp": "2026-09-06T11:04:50.078Z"
+}

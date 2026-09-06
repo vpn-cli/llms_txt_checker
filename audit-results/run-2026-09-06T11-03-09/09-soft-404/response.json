@@ -1,0 +1,92 @@
+{
+  "_testMetadata": {
+    "domain": "fixture-soft-404.com",
+    "timestamp": "2026-09-06T11:03:52.745Z",
+    "durationMs": 5,
+    "httpStatus": 200
+  },
+  "domain": "fixture-soft-404.com",
+  "score": 25,
+  "grade": "F",
+  "scoreBreakdown": {
+    "authenticity": 0,
+    "authenticityMax": 40,
+    "structure": 0,
+    "structureMax": 25,
+    "linkResolution": 25,
+    "linkResolutionMax": 25,
+    "linkQuality": 0,
+    "linkQualityMax": 10
+  },
+  "files": {
+    "llmsTxt": {
+      "url": "http://fixture-soft-404.com/llms.txt",
+      "exists": true,
+      "fileStatus": "Misconfigured",
+      "httpStatus": 200,
+      "contentType": "text/html",
+      "finalUrl": null,
+      "size": 114,
+      "classification": {
+        "classification": "SOFT_404",
+        "confidence": 0.6,
+        "reasons": [
+          "Title contains 404 indicator: \"Page Not Found\"",
+          "H1 heading indicates 404: \"404 - Oops, we cannot find that page.\"",
+          "Very short page content (37 chars)"
+        ]
+      },
+      "parsed": null,
+      "checks": [],
+      "error": null,
+      "generatedDraft": null
+    },
+    "llmsFullTxt": {
+      "url": "http://fixture-soft-404.com/llms-full.txt",
+      "exists": true,
+      "fileStatus": "Misconfigured",
+      "httpStatus": 200,
+      "contentType": "text/html",
+      "finalUrl": null,
+      "size": 114,
+      "classification": {
+        "classification": "SOFT_404",
+        "confidence": 0.6,
+        "reasons": [
+          "Title contains 404 indicator: \"Page Not Found\"",
+          "H1 heading indicates 404: \"404 - Oops, we cannot find that page.\"",
+          "Very short page content (37 chars)"
+        ]
+      },
+      "parsed": null,
+      "checks": [],
+      "error": null,
+      "generatedDraft": null
+    }
+  },
+  "links": [],
+  "fixes": [
+    {
+      "ruleId": "soft-404",
+      "severity": "critical",
+      "title": "/llms.txt returns a soft-404",
+      "explanation": "The server returns HTTP 200 but the content is a \"page not found\" template. Crawlers see this as a valid response but cannot extract useful information.",
+      "recommendation": "Configure your web server to serve a real Markdown file at /llms.txt, or return a proper 404 status if the file does not exist.",
+      "pointsImpact": 30
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "warnings": 0,
+    "failed": 0,
+    "linkStats": {
+      "markdownReferences": 0,
+      "uniqueUrls": 0,
+      "auditedUrls": 0,
+      "healthy": 0,
+      "broken": 0,
+      "unclassified": 0
+    }
+  },
+  "timestamp": "2026-09-06T11:03:52.745Z"
+}

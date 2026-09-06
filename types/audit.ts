@@ -6,7 +6,8 @@ export type FileClassification =
   | 'SPA_SHELL'
   | 'HTML_PAGE'
   | 'UNREACHABLE'
-  | 'INVALID_CONTENT';
+  | 'INVALID_CONTENT'
+  | 'TOO_LARGE';
 
 // ─── Link Classifications ───────────────────────────────────────────
 export type LinkClassification =
@@ -16,7 +17,8 @@ export type LinkClassification =
   | 'EMPTY_HTML'
   | 'BROKEN'
   | 'SPA_SHELL'
-  | 'SERVER_ERROR';
+  | 'SERVER_ERROR'
+  | 'TOO_LARGE';
 
 // ─── Severity Levels ────────────────────────────────────────────────
 export type Severity = 'critical' | 'high' | 'medium' | 'low';

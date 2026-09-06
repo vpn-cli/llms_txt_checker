@@ -55,4 +55,13 @@ describe('classifyResponse', () => {
     const result = classifyResponse(fetchRes, mockDetection(false), mockDetection(false));
     expect(result.classification).toBe('HTML_PAGE');
   });
+
+  it('identifies TOO_LARGE responses', () => {
+    const fetchRes = mockFetch({
+      status: 200,
+      error: 'Response too large: 10000000 bytes'
+    });
+    const result = classifyResponse(fetchRes, mockDetection(), mockDetection());
+    expect(result.classification).toBe('TOO_LARGE');
+  });
 });

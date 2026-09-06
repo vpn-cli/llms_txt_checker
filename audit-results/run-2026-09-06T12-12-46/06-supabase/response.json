@@ -1,0 +1,1257 @@
+{
+  "_testMetadata": {
+    "domain": "supabase.com",
+    "timestamp": "2026-09-06T12:13:32.590Z",
+    "durationMs": 2308,
+    "httpStatus": 200
+  },
+  "domain": "supabase.com",
+  "score": 93,
+  "grade": "A",
+  "scoreBreakdown": {
+    "authenticity": 40,
+    "authenticityMax": 40,
+    "structure": 25,
+    "structureMax": 25,
+    "linkResolution": 25,
+    "linkResolutionMax": 25,
+    "linkQuality": 3,
+    "linkQualityMax": 10
+  },
+  "files": {
+    "llmsTxt": {
+      "url": "https://supabase.com/llms.txt",
+      "exists": true,
+      "fileStatus": "Valid",
+      "httpStatus": 200,
+      "contentType": "text/plain; charset=utf-8",
+      "finalUrl": null,
+      "size": 2320,
+      "classification": {
+        "classification": "REAL_MARKDOWN",
+        "confidence": 0.95,
+        "reasons": [
+          "Content-type is text, content has Markdown structure"
+        ]
+      },
+      "parsed": {
+        "h1": "Supabase Docs",
+        "blockquote": null,
+        "sections": [
+          {
+            "heading": "Documentation",
+            "level": 2,
+            "links": [
+              {
+                "title": "Supabase - AI & Vectors",
+                "url": "https://supabase.com/docs/guides/ai.md",
+                "description": "",
+                "section": "Documentation"
+              },
+              {
+                "title": "Supabase - AI Tools",
+                "url": "https://supabase.com/docs/guides/ai-tools.md",
+                "description": "",
+                "section": "Documentation"
+              },
+              {
+                "title": "Supabase - Data REST API",
+                "url": "https://supabase.com/docs/guides/api.md",
+                "description": "",
+                "section": "Documentation"
+              },
+              {
+                "title": "Supabase - Auth",
+                "url": "https://supabase.com/docs/guides/auth.md",
+                "description": "",
+                "section": "Documentation"
+              },
+              {
+                "title": "Supabase - Cron",
+                "url": "https://supabase.com/docs/guides/cron.md",
+                "description": "",
+                "section": "Documentation"
+              },
+              {
+                "title": "Supabase - database",
+                "url": "https://supabase.com/docs/guides/database.md",
+                "description": "",
+                "section": "Documentation"
+              },
+              {
+                "title": "Supabase - Deployment & Branching",
+                "url": "https://supabase.com/docs/guides/deployment.md",
+                "description": "",
+                "section": "Documentation"
+              },
+              {
+                "title": "Supabase - Edge Functions",
+                "url": "https://supabase.com/docs/guides/functions.md",
+                "description": "",
+                "section": "Documentation"
+              },
+              {
+                "title": "Supabase - Getting Started",
+                "url": "https://supabase.com/docs/guides/getting-started.md",
+                "description": "",
+                "section": "Documentation"
+              },
+              {
+                "title": "Supabase - GraphQL",
+                "url": "https://supabase.com/docs/guides/graphql.md",
+                "description": "",
+                "section": "Documentation"
+              },
+              {
+                "title": "Supabase - Integrations",
+                "url": "https://supabase.com/docs/guides/integrations.md",
+                "description": "",
+                "section": "Documentation"
+              },
+              {
+                "title": "Supabase - Local Development & CLI",
+                "url": "https://supabase.com/docs/guides/local-development.md",
+                "description": "",
+                "section": "Documentation"
+              },
+              {
+                "title": "Supabase - Observability",
+                "url": "https://supabase.com/docs/guides/observability.md",
+                "description": "",
+                "section": "Documentation"
+              },
+              {
+                "title": "Supabase - Supabase Platform",
+                "url": "https://supabase.com/docs/guides/platform.md",
+                "description": "",
+                "section": "Documentation"
+              },
+              {
+                "title": "Supabase - Supabase Queues",
+                "url": "https://supabase.com/docs/guides/queues.md",
+                "description": "",
+                "section": "Documentation"
+              },
+              {
+                "title": "Supabase - Realtime",
+                "url": "https://supabase.com/docs/guides/realtime.md",
+                "description": "",
+                "section": "Documentation"
+              },
+              {
+                "title": "Supabase - Resources",
+                "url": "https://supabase.com/docs/guides/resources.md",
+                "description": "",
+                "section": "Documentation"
+              },
+              {
+                "title": "Supabase - Supabase Security",
+                "url": "https://supabase.com/docs/guides/security.md",
+                "description": "",
+                "section": "Documentation"
+              },
+              {
+                "title": "Supabase - Self-Hosting",
+                "url": "https://supabase.com/docs/guides/self-hosting.md",
+                "description": "",
+                "section": "Documentation"
+              },
+              {
+                "title": "Supabase - Storage",
+                "url": "https://supabase.com/docs/guides/storage.md",
+                "description": "",
+                "section": "Documentation"
+              },
+              {
+                "title": "Supabase Reference (JavaScript)",
+                "url": "https://supabase.com/llms/js.txt",
+                "description": "",
+                "section": "Documentation"
+              },
+              {
+                "title": "Supabase Reference (Dart)",
+                "url": "https://supabase.com/llms/dart.txt",
+                "description": "",
+                "section": "Documentation"
+              },
+              {
+                "title": "Supabase Reference (Swift)",
+                "url": "https://supabase.com/llms/swift.txt",
+                "description": "",
+                "section": "Documentation"
+              },
+              {
+                "title": "Supabase Reference (Kotlin)",
+                "url": "https://supabase.com/llms/kotlin.txt",
+                "description": "",
+                "section": "Documentation"
+              },
+              {
+                "title": "Supabase Reference (Python)",
+                "url": "https://supabase.com/llms/python.txt",
+                "description": "",
+                "section": "Documentation"
+              },
+              {
+                "title": "Supabase Reference (C#)",
+                "url": "https://supabase.com/llms/csharp.txt",
+                "description": "",
+                "section": "Documentation"
+              },
+              {
+                "title": "Supabase Server SDK Reference",
+                "url": "https://supabase.com/llms/server.txt",
+                "description": "",
+                "section": "Documentation"
+              },
+              {
+                "title": "Supabase CLI Reference",
+                "url": "https://supabase.com/llms/cli.txt",
+                "description": "",
+                "section": "Documentation"
+              },
+              {
+                "title": "Supabase Management API Reference",
+                "url": "https://supabase.com/llms/api.txt",
+                "description": "",
+                "section": "Documentation"
+              }
+            ],
+            "content": ""
+          },
+          {
+            "heading": "Pricing",
+            "level": 2,
+            "links": [
+              {
+                "title": "Supabase Pricing",
+                "url": "https://supabase.com/pricing.md",
+                "description": "",
+                "section": "Pricing"
+              }
+            ],
+            "content": ""
+          }
+        ],
+        "links": [
+          {
+            "title": "Supabase - AI & Vectors",
+            "url": "https://supabase.com/docs/guides/ai.md",
+            "description": "",
+            "section": "Documentation"
+          },
+          {
+            "title": "Supabase - AI Tools",
+            "url": "https://supabase.com/docs/guides/ai-tools.md",
+            "description": "",
+            "section": "Documentation"
+          },
+          {
+            "title": "Supabase - Data REST API",
+            "url": "https://supabase.com/docs/guides/api.md",
+            "description": "",
+            "section": "Documentation"
+          },
+          {
+            "title": "Supabase - Auth",
+            "url": "https://supabase.com/docs/guides/auth.md",
+            "description": "",
+            "section": "Documentation"
+          },
+          {
+            "title": "Supabase - Cron",
+            "url": "https://supabase.com/docs/guides/cron.md",
+            "description": "",
+            "section": "Documentation"
+          },
+          {
+            "title": "Supabase - database",
+            "url": "https://supabase.com/docs/guides/database.md",
+            "description": "",
+            "section": "Documentation"
+          },
+          {
+            "title": "Supabase - Deployment & Branching",
+            "url": "https://supabase.com/docs/guides/deployment.md",
+            "description": "",
+            "section": "Documentation"
+          },
+          {
+            "title": "Supabase - Edge Functions",
+            "url": "https://supabase.com/docs/guides/functions.md",
+            "description": "",
+            "section": "Documentation"
+          },
+          {
+            "title": "Supabase - Getting Started",
+            "url": "https://supabase.com/docs/guides/getting-started.md",
+            "description": "",
+            "section": "Documentation"
+          },
+          {
+            "title": "Supabase - GraphQL",
+            "url": "https://supabase.com/docs/guides/graphql.md",
+            "description": "",
+            "section": "Documentation"
+          },
+          {
+            "title": "Supabase - Integrations",
+            "url": "https://supabase.com/docs/guides/integrations.md",
+            "description": "",
+            "section": "Documentation"
+          },
+          {
+            "title": "Supabase - Local Development & CLI",
+            "url": "https://supabase.com/docs/guides/local-development.md",
+            "description": "",
+            "section": "Documentation"
+          },
+          {
+            "title": "Supabase - Observability",
+            "url": "https://supabase.com/docs/guides/observability.md",
+            "description": "",
+            "section": "Documentation"
+          },
+          {
+            "title": "Supabase - Supabase Platform",
+            "url": "https://supabase.com/docs/guides/platform.md",
+            "description": "",
+            "section": "Documentation"
+          },
+          {
+            "title": "Supabase - Supabase Queues",
+            "url": "https://supabase.com/docs/guides/queues.md",
+            "description": "",
+            "section": "Documentation"
+          },
+          {
+            "title": "Supabase - Realtime",
+            "url": "https://supabase.com/docs/guides/realtime.md",
+            "description": "",
+            "section": "Documentation"
+          },
+          {
+            "title": "Supabase - Resources",
+            "url": "https://supabase.com/docs/guides/resources.md",
+            "description": "",
+            "section": "Documentation"
+          },
+          {
+            "title": "Supabase - Supabase Security",
+            "url": "https://supabase.com/docs/guides/security.md",
+            "description": "",
+            "section": "Documentation"
+          },
+          {
+            "title": "Supabase - Self-Hosting",
+            "url": "https://supabase.com/docs/guides/self-hosting.md",
+            "description": "",
+            "section": "Documentation"
+          },
+          {
+            "title": "Supabase - Storage",
+            "url": "https://supabase.com/docs/guides/storage.md",
+            "description": "",
+            "section": "Documentation"
+          },
+          {
+            "title": "Supabase Reference (JavaScript)",
+            "url": "https://supabase.com/llms/js.txt",
+            "description": "",
+            "section": "Documentation"
+          },
+          {
+            "title": "Supabase Reference (Dart)",
+            "url": "https://supabase.com/llms/dart.txt",
+            "description": "",
+            "section": "Documentation"
+          },
+          {
+            "title": "Supabase Reference (Swift)",
+            "url": "https://supabase.com/llms/swift.txt",
+            "description": "",
+            "section": "Documentation"
+          },
+          {
+            "title": "Supabase Reference (Kotlin)",
+            "url": "https://supabase.com/llms/kotlin.txt",
+            "description": "",
+            "section": "Documentation"
+          },
+          {
+            "title": "Supabase Reference (Python)",
+            "url": "https://supabase.com/llms/python.txt",
+            "description": "",
+            "section": "Documentation"
+          },
+          {
+            "title": "Supabase Reference (C#)",
+            "url": "https://supabase.com/llms/csharp.txt",
+            "description": "",
+            "section": "Documentation"
+          },
+          {
+            "title": "Supabase Server SDK Reference",
+            "url": "https://supabase.com/llms/server.txt",
+            "description": "",
+            "section": "Documentation"
+          },
+          {
+            "title": "Supabase CLI Reference",
+            "url": "https://supabase.com/llms/cli.txt",
+            "description": "",
+            "section": "Documentation"
+          },
+          {
+            "title": "Supabase Management API Reference",
+            "url": "https://supabase.com/llms/api.txt",
+            "description": "",
+            "section": "Documentation"
+          },
+          {
+            "title": "Supabase Pricing",
+            "url": "https://supabase.com/pricing.md",
+            "description": "",
+            "section": "Pricing"
+          }
+        ],
+        "raw": "# Supabase Docs\n\nFor the complete documentation in a single file, see [Full Documentation](https://supabase.com/llms-full.txt).\n\n## Documentation\n\n- [Supabase - AI & Vectors](https://supabase.com/docs/guides/ai.md)\n- [Supabase - AI Tools](https://supabase.com/docs/guides/ai-tools.md)\n- [Supabase - Data REST API](https://supabase.com/docs/guides/api.md)\n- [Supabase - Auth](https://supabase.com/docs/guides/auth.md)\n- [Supabase - Cron](https://supabase.com/docs/guides/cron.md)\n- [Supabase - database](https://supabase.com/docs/guides/database.md)\n- [Supabase - Deployment & Branching](https://supabase.com/docs/guides/deployment.md)\n- [Supabase - Edge Functions](https://supabase.com/docs/guides/functions.md)\n- [Supabase - Getting Started](https://supabase.com/docs/guides/getting-started.md)\n- [Supabase - GraphQL](https://supabase.com/docs/guides/graphql.md)\n- [Supabase - Integrations](https://supabase.com/docs/guides/integrations.md)\n- [Supabase - Local Development & CLI](https://supabase.com/docs/guides/local-development.md)\n- [Supabase - Observability](https://supabase.com/docs/guides/observability.md)\n- [Supabase - Supabase Platform](https://supabase.com/docs/guides/platform.md)\n- [Supabase - Supabase Queues](https://supabase.com/docs/guides/queues.md)\n- [Supabase - Realtime](https://supabase.com/docs/guides/realtime.md)\n- [Supabase - Resources](https://supabase.com/docs/guides/resources.md)\n- [Supabase - Supabase Security](https://supabase.com/docs/guides/security.md)\n- [Supabase - Self-Hosting](https://supabase.com/docs/guides/self-hosting.md)\n- [Supabase - Storage](https://supabase.com/docs/guides/storage.md)\n- [Supabase Reference (JavaScript)](https://supabase.com/llms/js.txt)\n- [Supabase Reference (Dart)](https://supabase.com/llms/dart.txt)\n- [Supabase Reference (Swift)](https://supabase.com/llms/swift.txt)\n- [Supabase Reference (Kotlin)](https://supabase.com/llms/kotlin.txt)\n- [Supabase Reference (Python)](https://supabase.com/llms/python.txt)\n- [Supabase Reference (C#)](https://supabase.com/llms/csharp.txt)\n- [Supabase Server SDK Reference](https://supabase.com/llms/server.txt)\n- [Supabase CLI Reference](https://supabase.com/llms/cli.txt)\n- [Supabase Management API Reference](https://supabase.com/llms/api.txt)\n\n## Pricing\n\n- [Supabase Pricing](https://supabase.com/pricing.md)"
+      },
+      "checks": [
+        {
+          "ruleId": "h1-exists",
+          "type": "proposal-required",
+          "status": "pass",
+          "title": "H1 heading exists",
+          "message": "H1 found: \"Supabase Docs\""
+        },
+        {
+          "ruleId": "h1-first",
+          "type": "proposal-required",
+          "status": "pass",
+          "title": "H1 is the first heading",
+          "message": "H1 appears as the first heading in the document"
+        },
+        {
+          "ruleId": "blockquote-exists",
+          "type": "proposal-optional",
+          "status": "warning",
+          "title": "Summary blockquote exists",
+          "message": "Missing summary blockquote — the spec recommends an optional short description as a blockquote after the H1"
+        },
+        {
+          "ruleId": "h2-sections",
+          "type": "proposal-optional",
+          "status": "pass",
+          "title": "H2 sections",
+          "message": "2 H2 section(s) found: \"Documentation\", \"Pricing\""
+        },
+        {
+          "ruleId": "h2-has-links",
+          "type": "proposal-required",
+          "status": "pass",
+          "title": "H2 sections contain link lists",
+          "message": "2/2 section(s) contain Markdown links"
+        },
+        {
+          "ruleId": "links-present",
+          "type": "proposal-required",
+          "status": "pass",
+          "title": "Markdown hyperlinks present in sections",
+          "message": "30 Markdown link(s) found"
+        },
+        {
+          "ruleId": "urls-valid",
+          "type": "proposal-required",
+          "status": "pass",
+          "title": "URLs are syntactically valid",
+          "message": "All URLs are syntactically valid"
+        },
+        {
+          "ruleId": "heading-hierarchy",
+          "type": "proposal-required",
+          "status": "pass",
+          "title": "Heading hierarchy",
+          "message": "Document follows a reasonable heading hierarchy (H1 → H2)"
+        },
+        {
+          "ruleId": "descriptive-titles",
+          "type": "assignment-heuristic",
+          "status": "pass",
+          "title": "Link titles are descriptive",
+          "message": "All link titles are descriptive"
+        },
+        {
+          "ruleId": "link-descriptions",
+          "type": "assignment-heuristic",
+          "status": "warning",
+          "title": "Links have descriptions",
+          "message": "Only 0/30 link(s) have descriptions — descriptions help AI systems understand each resource's purpose"
+        }
+      ],
+      "error": null,
+      "generatedDraft": null
+    },
+    "llmsFullTxt": {
+      "url": "https://supabase.com/llms-full.txt",
+      "exists": true,
+      "fileStatus": "Misconfigured",
+      "httpStatus": 200,
+      "contentType": "text/plain; charset=utf-8",
+      "finalUrl": "https://supabase.com/llms-full.txt",
+      "size": 6854717,
+      "classification": {
+        "classification": "TOO_LARGE",
+        "confidence": 1,
+        "reasons": [
+          "Response too large: 6854717 bytes",
+          "Valid but unknown content because processing was bounded"
+        ]
+      },
+      "parsed": null,
+      "checks": [],
+      "error": "Response too large: 6854717 bytes",
+      "generatedDraft": null
+    }
+  },
+  "links": [
+    {
+      "title": "Supabase - AI & Vectors",
+      "url": "https://supabase.com/docs/guides/ai.md",
+      "description": "",
+      "section": "Documentation",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/markdown; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 0,
+        "quotations": 0,
+        "extractability": 1.75,
+        "readability": 0,
+        "total": 1.75
+      },
+      "error": null
+    },
+    {
+      "title": "Supabase - AI Tools",
+      "url": "https://supabase.com/docs/guides/ai-tools.md",
+      "description": "",
+      "section": "Documentation",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/markdown; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 0,
+        "quotations": 0,
+        "extractability": 1.4,
+        "readability": 0.5,
+        "total": 1.9
+      },
+      "error": null
+    },
+    {
+      "title": "Supabase - Data REST API",
+      "url": "https://supabase.com/docs/guides/api.md",
+      "description": "",
+      "section": "Documentation",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/markdown; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 1,
+        "quotations": 0,
+        "extractability": 1.15,
+        "readability": 0.8,
+        "total": 2.95
+      },
+      "error": null
+    },
+    {
+      "title": "Supabase - Auth",
+      "url": "https://supabase.com/docs/guides/auth.md",
+      "description": "",
+      "section": "Documentation",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/markdown; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 0,
+        "quotations": 0,
+        "extractability": 1,
+        "readability": 0,
+        "total": 1
+      },
+      "error": null
+    },
+    {
+      "title": "Supabase - Cron",
+      "url": "https://supabase.com/docs/guides/cron.md",
+      "description": "",
+      "section": "Documentation",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/markdown; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 0,
+        "quotations": 0,
+        "extractability": 1.15,
+        "readability": 1,
+        "total": 2.15
+      },
+      "error": null
+    },
+    {
+      "title": "Supabase - database",
+      "url": "https://supabase.com/docs/guides/database.md",
+      "description": "",
+      "section": "Documentation",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": "https://supabase.com/docs/guides/database/overview.md",
+      "contentType": "text/markdown; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 0,
+        "quotations": 0,
+        "extractability": 1.15,
+        "readability": 0.2,
+        "total": 1.35
+      },
+      "error": null
+    },
+    {
+      "title": "Supabase - Deployment & Branching",
+      "url": "https://supabase.com/docs/guides/deployment.md",
+      "description": "",
+      "section": "Documentation",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/markdown; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 0,
+        "quotations": 0,
+        "extractability": 1.4,
+        "readability": 0.5,
+        "total": 1.9
+      },
+      "error": null
+    },
+    {
+      "title": "Supabase - Edge Functions",
+      "url": "https://supabase.com/docs/guides/functions.md",
+      "description": "",
+      "section": "Documentation",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/markdown; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 0,
+        "quotations": 0,
+        "extractability": 1.4,
+        "readability": 0,
+        "total": 1.4
+      },
+      "error": null
+    },
+    {
+      "title": "Supabase - Getting Started",
+      "url": "https://supabase.com/docs/guides/getting-started.md",
+      "description": "",
+      "section": "Documentation",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/markdown; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 0,
+        "quotations": 0,
+        "extractability": 1,
+        "readability": 0,
+        "total": 1
+      },
+      "error": null
+    },
+    {
+      "title": "Supabase - GraphQL",
+      "url": "https://supabase.com/docs/guides/graphql.md",
+      "description": "",
+      "section": "Documentation",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/markdown; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 0,
+        "quotations": 1.5,
+        "extractability": 2,
+        "readability": 0.8,
+        "total": 4.3
+      },
+      "error": null
+    },
+    {
+      "title": "Supabase - Integrations",
+      "url": "https://supabase.com/docs/guides/integrations.md",
+      "description": "",
+      "section": "Documentation",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/markdown; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 0,
+        "quotations": 0,
+        "extractability": 0.75,
+        "readability": 0.2,
+        "total": 0.95
+      },
+      "error": null
+    },
+    {
+      "title": "Supabase - Local Development & CLI",
+      "url": "https://supabase.com/docs/guides/local-development.md",
+      "description": "",
+      "section": "Documentation",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/markdown; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 0,
+        "quotations": 0,
+        "extractability": 1.75,
+        "readability": 0.8,
+        "total": 2.55
+      },
+      "error": null
+    },
+    {
+      "title": "Supabase - Observability",
+      "url": "https://supabase.com/docs/guides/observability.md",
+      "description": "",
+      "section": "Documentation",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/markdown; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 0,
+        "quotations": 0,
+        "extractability": 1,
+        "readability": 0,
+        "total": 1
+      },
+      "error": null
+    },
+    {
+      "title": "Supabase - Supabase Platform",
+      "url": "https://supabase.com/docs/guides/platform.md",
+      "description": "",
+      "section": "Documentation",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/markdown; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 0,
+        "quotations": 0,
+        "extractability": 1.4,
+        "readability": 0,
+        "total": 1.4
+      },
+      "error": null
+    },
+    {
+      "title": "Supabase - Supabase Queues",
+      "url": "https://supabase.com/docs/guides/queues.md",
+      "description": "",
+      "section": "Documentation",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/markdown; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 0,
+        "quotations": 0,
+        "extractability": 1.15,
+        "readability": 0.5,
+        "total": 1.65
+      },
+      "error": null
+    },
+    {
+      "title": "Supabase - Realtime",
+      "url": "https://supabase.com/docs/guides/realtime.md",
+      "description": "",
+      "section": "Documentation",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/markdown; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 0,
+        "quotations": 0,
+        "extractability": 1.4,
+        "readability": 0,
+        "total": 1.4
+      },
+      "error": null
+    },
+    {
+      "title": "Supabase - Resources",
+      "url": "https://supabase.com/docs/guides/resources.md",
+      "description": "",
+      "section": "Documentation",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/markdown; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 0,
+        "quotations": 0,
+        "extractability": 0.75,
+        "readability": 0,
+        "total": 0.75
+      },
+      "error": null
+    },
+    {
+      "title": "Supabase - Supabase Security",
+      "url": "https://supabase.com/docs/guides/security.md",
+      "description": "",
+      "section": "Documentation",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/markdown; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 0,
+        "quotations": 0,
+        "extractability": 1.15,
+        "readability": 0,
+        "total": 1.15
+      },
+      "error": null
+    },
+    {
+      "title": "Supabase - Self-Hosting",
+      "url": "https://supabase.com/docs/guides/self-hosting.md",
+      "description": "",
+      "section": "Documentation",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/markdown; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 0,
+        "quotations": 0,
+        "extractability": 1.4,
+        "readability": 0,
+        "total": 1.4
+      },
+      "error": null
+    },
+    {
+      "title": "Supabase - Storage",
+      "url": "https://supabase.com/docs/guides/storage.md",
+      "description": "",
+      "section": "Documentation",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/markdown; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 0,
+        "quotations": 0,
+        "extractability": 1.4,
+        "readability": 0.2,
+        "total": 1.6
+      },
+      "error": null
+    },
+    {
+      "title": "Supabase Reference (JavaScript)",
+      "url": "https://supabase.com/llms/js.txt",
+      "description": "",
+      "section": "Documentation",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/plain; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 1,
+        "statistics": 2,
+        "quotations": 1.5,
+        "extractability": 1.75,
+        "readability": 0.8,
+        "total": 7.05
+      },
+      "error": null
+    },
+    {
+      "title": "Supabase Reference (Dart)",
+      "url": "https://supabase.com/llms/dart.txt",
+      "description": "",
+      "section": "Documentation",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/plain; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 2,
+        "quotations": 0.3,
+        "extractability": 1.75,
+        "readability": 0.5,
+        "total": 4.55
+      },
+      "error": null
+    },
+    {
+      "title": "Supabase Reference (Swift)",
+      "url": "https://supabase.com/llms/swift.txt",
+      "description": "",
+      "section": "Documentation",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/plain; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 1.5,
+        "quotations": 1.5,
+        "extractability": 1.75,
+        "readability": 0.5,
+        "total": 5.25
+      },
+      "error": null
+    },
+    {
+      "title": "Supabase Reference (Kotlin)",
+      "url": "https://supabase.com/llms/kotlin.txt",
+      "description": "",
+      "section": "Documentation",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/plain; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 2.5,
+        "quotations": 1.5,
+        "extractability": 1.75,
+        "readability": 0.5,
+        "total": 6.25
+      },
+      "error": null
+    },
+    {
+      "title": "Supabase Reference (Python)",
+      "url": "https://supabase.com/llms/python.txt",
+      "description": "",
+      "section": "Documentation",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/plain; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 2,
+        "quotations": 1.5,
+        "extractability": 1.75,
+        "readability": 0.5,
+        "total": 5.75
+      },
+      "error": null
+    },
+    {
+      "title": "Supabase Reference (C#)",
+      "url": "https://supabase.com/llms/csharp.txt",
+      "description": "",
+      "section": "Documentation",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/plain; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 1.5,
+        "quotations": 1.5,
+        "extractability": 1.75,
+        "readability": 0.5,
+        "total": 5.25
+      },
+      "error": null
+    },
+    {
+      "title": "Supabase Server SDK Reference",
+      "url": "https://supabase.com/llms/server.txt",
+      "description": "",
+      "section": "Documentation",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/plain; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 2,
+        "quotations": 1.5,
+        "extractability": 1.75,
+        "readability": 0.8,
+        "total": 6.05
+      },
+      "error": null
+    },
+    {
+      "title": "Supabase CLI Reference",
+      "url": "https://supabase.com/llms/cli.txt",
+      "description": "",
+      "section": "Documentation",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/plain; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 2.5,
+        "statistics": 2.5,
+        "quotations": 1.1,
+        "extractability": 1.75,
+        "readability": 0.8,
+        "total": 8.65
+      },
+      "error": null
+    },
+    {
+      "title": "Supabase Management API Reference",
+      "url": "https://supabase.com/llms/api.txt",
+      "description": "",
+      "section": "Documentation",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/plain; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 0,
+        "quotations": 0.8,
+        "extractability": 1,
+        "readability": 0.5,
+        "total": 2.3
+      },
+      "error": null
+    },
+    {
+      "title": "Supabase Pricing",
+      "url": "https://supabase.com/pricing.md",
+      "description": "",
+      "section": "Pricing",
+      "status": "MARKDOWN_CONTENT",
+      "httpStatus": 200,
+      "finalUrl": null,
+      "contentType": "text/markdown; charset=utf-8",
+      "resolves": true,
+      "isHtml": false,
+      "isMarkdown": true,
+      "hasMeaningfulContent": true,
+      "aeoScore": {
+        "evidence": 0,
+        "statistics": 2.5,
+        "quotations": 0,
+        "extractability": 1.65,
+        "readability": 1,
+        "total": 5.15
+      },
+      "error": null
+    }
+  ],
+  "fixes": [
+    {
+      "ruleId": "blockquote-exists",
+      "severity": "medium",
+      "title": "Summary blockquote exists",
+      "explanation": "Missing summary blockquote — the spec recommends an optional short description as a blockquote after the H1",
+      "recommendation": "Add a blockquote after the H1 with a brief description. Example: > A tool for doing X.",
+      "pointsImpact": 4
+    },
+    {
+      "ruleId": "markdown-links-assignment",
+      "severity": "medium",
+      "title": "30 linked page(s) serve Markdown instead of HTML",
+      "explanation": "These URLs serve Markdown text directly: https://supabase.com/docs/guides/ai.md, https://supabase.com/docs/guides/ai-tools.md, https://supabase.com/docs/guides/api.md, https://supabase.com/docs/guides/auth.md, https://supabase.com/docs/guides/cron.md, https://supabase.com/docs/guides/database.md, https://supabase.com/docs/guides/deployment.md, https://supabase.com/docs/guides/functions.md, https://supabase.com/docs/guides/getting-started.md, https://supabase.com/docs/guides/graphql.md, https://supabase.com/docs/guides/integrations.md, https://supabase.com/docs/guides/local-development.md, https://supabase.com/docs/guides/observability.md, https://supabase.com/docs/guides/platform.md, https://supabase.com/docs/guides/queues.md, https://supabase.com/docs/guides/realtime.md, https://supabase.com/docs/guides/resources.md, https://supabase.com/docs/guides/security.md, https://supabase.com/docs/guides/self-hosting.md, https://supabase.com/docs/guides/storage.md, https://supabase.com/llms/js.txt, https://supabase.com/llms/dart.txt, https://supabase.com/llms/swift.txt, https://supabase.com/llms/kotlin.txt, https://supabase.com/llms/python.txt, https://supabase.com/llms/csharp.txt, https://supabase.com/llms/server.txt, https://supabase.com/llms/cli.txt, https://supabase.com/llms/api.txt, https://supabase.com/pricing.md. While this is valid under llms.txt proposal semantics, the assignment requirement expects linked URLs to serve real HTML.",
+      "recommendation": "To satisfy the specific assignment constraint, ensure that your linked resources are served as HTML pages.",
+      "pointsImpact": 0
+    },
+    {
+      "ruleId": "aeo-weak-evidence",
+      "severity": "low",
+      "title": "Many pages lack explicit source attribution",
+      "explanation": "Over half of your pages have weak or missing citations, reference sections, or explicit source attributions. This heuristic measures observable content characteristics; it does not predict citation behavior.",
+      "recommendation": "Add clear attribution to facts and claims, and include reference sections where appropriate.",
+      "pointsImpact": 0
+    },
+    {
+      "ruleId": "aeo-weak-statistics",
+      "severity": "low",
+      "title": "Many pages lack concrete statistics or metrics",
+      "explanation": "Over half of your pages have very few concrete statistics, percentages, or measurements. This provides fewer evidence-oriented signals.",
+      "recommendation": "Incorporate concrete metrics, measurements, or statistics where appropriate in your technical documentation.",
+      "pointsImpact": 0
+    }
+  ],
+  "summary": {
+    "passed": 8,
+    "warnings": 2,
+    "failed": 0,
+    "linkStats": {
+      "markdownReferences": 30,
+      "uniqueUrls": 30,
+      "auditedUrls": 30,
+      "healthy": 30,
+      "broken": 0,
+      "unclassified": 0
+    }
+  },
+  "timestamp": "2026-09-06T12:13:32.590Z"
+}

@@ -69,6 +69,12 @@ function classifyLink(
   redirected: boolean,
   error: string | null
 ): { classification: LinkClassification; resolves: boolean; isHtml: boolean; isMarkdown: boolean; hasMeaningful: boolean; aeoInput: ContentExtractabilityInput | null } {
+  if (httpStatus === 200 && error?.startsWith('Response too large')) {
+    const isHtml = contentType?.includes('text/html') ?? false;
+    const isMarkdown = (contentType?.includes('text/markdown') || contentType?.includes('text/plain')) ?? false;
+    return { classification: 'TOO_LARGE', resolves: true, isHtml, isMarkdown, hasMeaningful: false, aeoInput: null };
+  }
+
   if (error || httpStatus === null) {
     return { classification: 'BROKEN', resolves: false, isHtml: false, isMarkdown: false, hasMeaningful: false, aeoInput: null };
   }

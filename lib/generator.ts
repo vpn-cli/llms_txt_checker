@@ -192,7 +192,7 @@ async function fetchPageMetadata(urls: string[]): Promise<ExtractedPage[]> {
     const h1 = $('h1').first().text().trim();
 
     const finalTitle = title || h1 || url;
-    const finalDesc = metaDesc || h1 || title || 'No description available.';
+    const finalDesc = metaDesc || h1 || title || '';
 
     pages.push({
       url: res.finalUrl || url,
@@ -210,7 +210,11 @@ function assembleMarkdown(domain: string, pages: ExtractedPage[]): string {
   md += `## Core Pages\n\n`;
 
   for (const p of pages) {
-    md += `- [${p.title}](${p.url}): ${p.description}\n`;
+    if (p.description) {
+      md += `- [${p.title}](${p.url}): ${p.description}\n`;
+    } else {
+      md += `- [${p.title}](${p.url})\n`;
+    }
   }
 
   return md;

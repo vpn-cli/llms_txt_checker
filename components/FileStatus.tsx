@@ -14,6 +14,7 @@ function classificationBadge(classification: FileClassification) {
     HTML_PAGE: { bg: 'rgba(234,179,8,0.12)', text: 'var(--warning)', label: 'HTML Page' },
     UNREACHABLE: { bg: 'rgba(239,68,68,0.12)', text: 'var(--error)', label: 'Unreachable' },
     INVALID_CONTENT: { bg: 'rgba(239,68,68,0.12)', text: 'var(--error)', label: 'Invalid' },
+    TOO_LARGE: { bg: 'rgba(234,179,8,0.12)', text: 'var(--warning)', label: 'Too Large' },
   };
 
   const s = styles[classification];

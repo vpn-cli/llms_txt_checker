@@ -1,0 +1,79 @@
+{
+  "_testMetadata": {
+    "domain": "fixture-missing",
+    "timestamp": "2026-09-06T10:55:04.926Z",
+    "durationMs": 1,
+    "httpStatus": null
+  },
+  "domain": "127.0.0.1",
+  "score": 25,
+  "grade": "F",
+  "scoreBreakdown": {
+    "authenticity": 0,
+    "authenticityMax": 40,
+    "structure": 0,
+    "structureMax": 25,
+    "linkResolution": 25,
+    "linkResolutionMax": 25,
+    "linkQuality": 0,
+    "linkQualityMax": 10
+  },
+  "files": {
+    "llmsTxt": {
+      "url": "http://127.0.0.1:47578/llms.txt",
+      "exists": false,
+      "fileStatus": "Not Found",
+      "httpStatus": null,
+      "contentType": null,
+      "finalUrl": null,
+      "size": 0,
+      "classification": {
+        "classification": "UNREACHABLE",
+        "confidence": 1,
+        "reasons": [
+          "SSRF blocked: Blocked private IP: 127.0.0.1"
+        ]
+      },
+      "parsed": null,
+      "checks": [],
+      "error": "SSRF blocked: Blocked private IP: 127.0.0.1",
+      "generatedDraft": null
+    },
+    "llmsFullTxt": {
+      "url": "http://127.0.0.1:47578/llms-full.txt",
+      "exists": false,
+      "fileStatus": "Not Found",
+      "httpStatus": null,
+      "contentType": null,
+      "finalUrl": null,
+      "size": 0,
+      "classification": {
+        "classification": "UNREACHABLE",
+        "confidence": 1,
+        "reasons": [
+          "SSRF blocked: Blocked private IP: 127.0.0.1"
+        ]
+      },
+      "parsed": null,
+      "checks": [],
+      "error": "SSRF blocked: Blocked private IP: 127.0.0.1",
+      "generatedDraft": null
+    }
+  },
+  "links": [],
+  "fixes": [],
+  "summary": {
+    "passed": 0,
+    "warnings": 0,
+    "failed": 0,
+    "linkStats": {
+      "markdownReferences": 0,
+      "uniqueUrls": 0,
+      "auditedUrls": 0,
+      "healthy": 0,
+      "broken": 0,
+      "unclassified": 0
+    }
+  },
+  "timestamp": "2026-09-06T10:55:04.926Z"
+}

@@ -108,6 +108,15 @@ export function classifyResponse(
     };
   }
 
+  // Check for too large responses
+  if (status === 200 && error?.startsWith('Response too large')) {
+    return {
+      classification: 'TOO_LARGE',
+      confidence: 1.0,
+      reasons: [error, 'Valid but unknown content because processing was bounded'],
+    };
+  }
+
   // From here, we expect status 200 (or 2xx)
   if (!body || body.trim().length === 0) {
     return {

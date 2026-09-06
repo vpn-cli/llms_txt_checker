@@ -21,6 +21,7 @@ function statusBadge(status: LinkClassification) {
     BROKEN: { bg: 'rgba(239,68,68,0.12)', text: 'var(--error)', label: 'Broken' },
     SERVER_ERROR: { bg: 'rgba(239,68,68,0.12)', text: 'var(--error)', label: 'Server Error' },
     SPA_SHELL: { bg: 'rgba(234,179,8,0.12)', text: 'var(--warning)', label: 'SPA Shell' },
+    TOO_LARGE: { bg: 'rgba(234,179,8,0.12)', text: 'var(--warning)', label: 'Too Large' },
   };
 
   const s = styles[status];

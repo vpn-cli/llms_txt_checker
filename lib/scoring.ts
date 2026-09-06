@@ -106,7 +106,8 @@ function scoreLinkResolution(links: LinkCheckResult[]): number {
     switch (link.status) {
       case 'HTML_CONTENT':
       case 'MARKDOWN_CONTENT':
-        score += 1; // Both resolve and have meaningful/readable content
+      case 'TOO_LARGE':
+        score += 1; // Resolves (TOO_LARGE is valid just bounded)
         break;
       case 'OTHER_NON_HTML':
         score += 0.7; // Resolves, but not natively readable text

@@ -128,4 +128,27 @@ describe('link-checker', () => {
     expect(results[0].status).toBe('BROKEN');
     expect(results[0].resolves).toBe(false);
   });
+
+  it('identifies TOO_LARGE targets', async () => {
+    vi.spyOn(fetcher, 'safeFetch').mockResolvedValue({
+      url: 'https://example.com/large',
+      status: 200,
+      contentType: 'text/html',
+      finalUrl: null,
+      body: null,
+      size: 10000000,
+      redirectCount: 0,
+      error: 'Response too large: 10000000 bytes'
+    } as FetchResult);
+
+    const links: ParsedLink[] = [
+      { title: 'Large', url: 'https://example.com/large', description: '', section: 'Docs' }
+    ];
+
+    const results = await checkLinks(links);
+    
+    expect(results[0].status).toBe('TOO_LARGE');
+    expect(results[0].resolves).toBe(true);
+    expect(results[0].isHtml).toBe(true);
+  });
 });

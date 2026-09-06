@@ -1,0 +1,92 @@
+{
+  "_testMetadata": {
+    "domain": "fixture-misconfigured.com",
+    "timestamp": "2026-09-06T11:01:38.939Z",
+    "durationMs": 17,
+    "httpStatus": 200
+  },
+  "domain": "fixture-misconfigured.com",
+  "score": 25,
+  "grade": "F",
+  "scoreBreakdown": {
+    "authenticity": 0,
+    "authenticityMax": 40,
+    "structure": 0,
+    "structureMax": 25,
+    "linkResolution": 25,
+    "linkResolutionMax": 25,
+    "linkQuality": 0,
+    "linkQualityMax": 10
+  },
+  "files": {
+    "llmsTxt": {
+      "url": "http://fixture-misconfigured.com/llms.txt",
+      "exists": true,
+      "fileStatus": "Misconfigured",
+      "httpStatus": 200,
+      "contentType": "text/html",
+      "finalUrl": null,
+      "size": 108,
+      "classification": {
+        "classification": "SPA_SHELL",
+        "confidence": 0.5,
+        "reasons": [
+          "Framework marker found: #root",
+          "Very little server-rendered text (0 chars)",
+          "HTML content-type returned for a .txt file request"
+        ]
+      },
+      "parsed": null,
+      "checks": [],
+      "error": null,
+      "generatedDraft": null
+    },
+    "llmsFullTxt": {
+      "url": "http://fixture-misconfigured.com/llms-full.txt",
+      "exists": true,
+      "fileStatus": "Misconfigured",
+      "httpStatus": 200,
+      "contentType": "text/html",
+      "finalUrl": null,
+      "size": 108,
+      "classification": {
+        "classification": "SPA_SHELL",
+        "confidence": 0.5,
+        "reasons": [
+          "Framework marker found: #root",
+          "Very little server-rendered text (0 chars)",
+          "HTML content-type returned for a .txt file request"
+        ]
+      },
+      "parsed": null,
+      "checks": [],
+      "error": null,
+      "generatedDraft": null
+    }
+  },
+  "links": [],
+  "fixes": [
+    {
+      "ruleId": "spa-shell",
+      "severity": "critical",
+      "title": "/llms.txt returns an SPA shell",
+      "explanation": "The server returns the same HTML application shell for /llms.txt as it does for any other path. Crawlers cannot execute JavaScript — they see an empty HTML page instead of your documentation.",
+      "recommendation": "Configure your web server or CDN to serve a static Markdown file at /llms.txt, bypassing your SPA's catch-all routing.",
+      "pointsImpact": 30
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "warnings": 0,
+    "failed": 0,
+    "linkStats": {
+      "markdownReferences": 0,
+      "uniqueUrls": 0,
+      "auditedUrls": 0,
+      "healthy": 0,
+      "broken": 0,
+      "unclassified": 0
+    }
+  },
+  "timestamp": "2026-09-06T11:01:38.939Z"
+}
