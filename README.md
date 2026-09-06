@@ -21,13 +21,6 @@ The checker runs a complete validation pipeline:
 
 ---
 
-## Why llms.txt?
-
-The `llms.txt` proposal gives language models a standardized way to discover a website's most important content. 
-
-When auditing these files, I realized it was critical to distinguish between the **proposal's rules**, the **specific requirements of this assignment**, and **my own heuristics**. I designed this tool to check all three dimensions transparently without blurring the lines between them.
-
----
 
 ## What I Check
 
