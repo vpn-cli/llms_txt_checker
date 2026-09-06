@@ -128,12 +128,12 @@ export interface HtmlMetadata {
 export interface ScoreBreakdown {
   authenticity: number;
   authenticityMax: number;
-  structure: number;
-  structureMax: number;
-  linkResolution: number;
-  linkResolutionMax: number;
-  linkQuality: number;
-  linkQualityMax: number;
+  structure: number | 'N/A';
+  structureMax: number | 'N/A';
+  linkResolution: number | 'N/A';
+  linkResolutionMax: number | 'N/A';
+  linkQuality: number | 'N/A';
+  linkQualityMax: number | 'N/A';
 }
 
 export interface Fix {

@@ -177,7 +177,7 @@ function generateFixes(
       severity: 'critical',
       title: '/llms.txt does not exist',
       explanation:
-        'No /llms.txt file was found. Without this file, automated agents cannot discover or index your documentation and resources.',
+        'No /llms.txt was found. This removes the site\'s explicit llms.txt-based discovery path for AI agents, so the site cannot provide a curated set of high-value resources through this mechanism.',
       recommendation:
         'Create a /llms.txt file at the root of your domain with your project name, summary, and links to key documentation.',
       pointsImpact: 30,
@@ -418,22 +418,39 @@ export function calculateScore(
   const allChecks = llmsTxt.checks;
 
   const authenticity = scoreAuthenticity(llmsTxt, llmsFullTxt);
-  const structure = scoreStructure(allChecks);
-  const linkResolution = scoreLinkResolution(links);
-  const linkQuality = scoreLinkQuality(links);
+  let structure: number | 'N/A' = scoreStructure(allChecks);
+  let linkResolution: number | 'N/A' = scoreLinkResolution(links);
+  let linkQuality: number | 'N/A' = scoreLinkQuality(links);
+  let structureMax: number | 'N/A' = STRUCTURE_MAX;
+  let linkResolutionMax: number | 'N/A' = LINK_RESOLUTION_MAX;
+  let linkQualityMax: number | 'N/A' = LINK_QUALITY_MAX;
 
-  const score = Math.round(authenticity + structure + linkResolution + linkQuality);
+  if (llmsTxt.fileStatus === 'Not Found') {
+    structure = 'N/A';
+    structureMax = 'N/A';
+    linkResolution = 'N/A';
+    linkResolutionMax = 'N/A';
+    linkQuality = 'N/A';
+    linkQualityMax = 'N/A';
+  }
+
+  const score = Math.round(
+    authenticity + 
+    (typeof structure === 'number' ? structure : 0) + 
+    (typeof linkResolution === 'number' ? linkResolution : 0) + 
+    (typeof linkQuality === 'number' ? linkQuality : 0)
+  );
   const grade = scoreToGrade(score);
 
   const breakdown: ScoreBreakdown = {
     authenticity,
     authenticityMax: AUTHENTICITY_MAX,
     structure,
-    structureMax: STRUCTURE_MAX,
+    structureMax,
     linkResolution,
-    linkResolutionMax: LINK_RESOLUTION_MAX,
+    linkResolutionMax,
     linkQuality,
-    linkQualityMax: LINK_QUALITY_MAX,
+    linkQualityMax,
   };
 
   const fixes = generateFixes(llmsTxt, llmsFullTxt, allChecks, links);

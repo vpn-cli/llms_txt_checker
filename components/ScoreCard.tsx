@@ -17,7 +17,18 @@ function getGradeColor(grade: string): string {
   }
 }
 
-function BreakdownBar({ label, value, max }: { label: string; value: number; max: number }) {
+function BreakdownBar({ label, value, max }: { label: string; value: number | 'N/A'; max: number | 'N/A' }) {
+  if (value === 'N/A' || max === 'N/A') {
+    return (
+      <div className="flex items-center gap-3 text-sm opacity-50">
+        <span className="w-28 text-[var(--muted)] shrink-0">{label}</span>
+        <div className="flex-1 h-2 rounded-full bg-[var(--card-border)] overflow-hidden">
+          <div className="h-full bg-[var(--muted)] w-full" />
+        </div>
+        <span className="w-14 text-right font-mono text-xs text-[var(--muted)]">N/A</span>
+      </div>
+    );
+  }
   const pct = max > 0 ? (value / max) * 100 : 0;
   return (
     <div className="flex items-center gap-3 text-sm">

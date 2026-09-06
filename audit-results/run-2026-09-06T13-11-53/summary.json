@@ -1,0 +1,122 @@
+{
+  "runTimestamp": "2026-09-06T13:11:53.459Z",
+  "tests": [
+    {
+      "id": "01-infrasity",
+      "domain": "infrasity.com",
+      "environment": "production",
+      "status": "completed",
+      "httpStatus": 200,
+      "fileStatus": "Valid",
+      "classification": "REAL_MARKDOWN",
+      "technicalScore": 95,
+      "aeoScore": "4.47",
+      "durationMs": 6410,
+      "responseFile": "01-infrasity/response.json"
+    },
+    {
+      "id": "02-vercel",
+      "domain": "vercel.com",
+      "environment": "production",
+      "status": "completed",
+      "httpStatus": 200,
+      "fileStatus": "Valid",
+      "classification": "REAL_MARKDOWN",
+      "technicalScore": 93,
+      "aeoScore": "2.69",
+      "durationMs": 6623,
+      "responseFile": "02-vercel/response.json"
+    },
+    {
+      "id": "03-anthropic-docs",
+      "domain": "docs.anthropic.com",
+      "environment": "production",
+      "status": "completed",
+      "httpStatus": 200,
+      "fileStatus": "Valid",
+      "classification": "REAL_MARKDOWN",
+      "technicalScore": 94,
+      "aeoScore": "4.44",
+      "durationMs": 9517,
+      "responseFile": "03-anthropic-docs/response.json"
+    },
+    {
+      "id": "04-cloudflare",
+      "domain": "developers.cloudflare.com",
+      "environment": "production",
+      "status": "completed",
+      "httpStatus": 200,
+      "fileStatus": "Valid",
+      "classification": "REAL_MARKDOWN",
+      "technicalScore": 92,
+      "aeoScore": "2.02",
+      "durationMs": 2816,
+      "responseFile": "04-cloudflare/response.json"
+    },
+    {
+      "id": "05-stripe-docs",
+      "domain": "docs.stripe.com",
+      "environment": "production",
+      "status": "completed",
+      "httpStatus": 200,
+      "fileStatus": "Valid",
+      "classification": "REAL_MARKDOWN",
+      "technicalScore": 93,
+      "aeoScore": "2.84",
+      "durationMs": 9072,
+      "responseFile": "05-stripe-docs/response.json"
+    },
+    {
+      "id": "06-supabase",
+      "domain": "supabase.com",
+      "environment": "production",
+      "status": "completed",
+      "httpStatus": 200,
+      "fileStatus": "Valid",
+      "classification": "REAL_MARKDOWN",
+      "technicalScore": 93,
+      "aeoScore": "2.99",
+      "durationMs": 2125,
+      "responseFile": "06-supabase/response.json"
+    },
+    {
+      "id": "07-missing-file",
+      "domain": "fixture-missing.com",
+      "environment": "fixture",
+      "status": "completed",
+      "httpStatus": 404,
+      "fileStatus": "Not Found",
+      "classification": "NOT_FOUND",
+      "technicalScore": 0,
+      "aeoScore": "0",
+      "durationMs": 49,
+      "responseFile": "07-missing-file/response.json"
+    },
+    {
+      "id": "08-misconfigured",
+      "domain": "fixture-misconfigured.com",
+      "environment": "fixture",
+      "status": "completed",
+      "httpStatus": 200,
+      "fileStatus": "Misconfigured",
+      "classification": "SPA_SHELL",
+      "technicalScore": 25,
+      "aeoScore": "0",
+      "durationMs": 21,
+      "responseFile": "08-misconfigured/response.json"
+    },
+    {
+      "id": "09-soft-404",
+      "domain": "fixture-soft-404.com",
+      "environment": "fixture",
+      "status": "completed",
+      "httpStatus": 200,
+      "fileStatus": "Misconfigured",
+      "classification": "SOFT_404",
+      "technicalScore": 25,
+      "aeoScore": "0",
+      "durationMs": 7,
+      "responseFile": "09-soft-404/response.json"
+    }
+  ]
+}

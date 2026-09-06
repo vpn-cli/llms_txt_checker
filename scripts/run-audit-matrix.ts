@@ -136,12 +136,25 @@ async function runTestMatrix() {
       
       // Expected behavior check
       let expectedBehaviorMet = true;
+      let failureReason = '';
       if (test.id === '07-missing-file') {
-        if (fileStateLabel !== 'Not Found' || !result.files.llmsTxt.generatedDraft) expectedBehaviorMet = false;
+        if (fileStateLabel !== 'Not Found') { expectedBehaviorMet = false; failureReason = 'fileStateLabel is not Not Found'; }
+        if (!result.files.llmsTxt.generatedDraft) { expectedBehaviorMet = false; failureReason = 'Missing generatedDraft'; }
+        if (result.scoreBreakdown.structure !== 'N/A') { expectedBehaviorMet = false; failureReason = 'structure score is not N/A'; }
+        if (result.scoreBreakdown.linkResolution !== 'N/A') { expectedBehaviorMet = false; failureReason = 'linkResolution is not N/A'; }
+        if (result.scoreBreakdown.linkQuality !== 'N/A') { expectedBehaviorMet = false; failureReason = 'linkQuality is not N/A'; }
+        if (!result.files.llmsTxt.generatedDraft?.includes('About Us')) { expectedBehaviorMet = false; failureReason = 'Draft missing expected metadata'; }
       } else if (test.id === '08-misconfigured' || test.id === '09-soft-404') {
-        if (fileStateLabel !== 'Misconfigured' || result.files.llmsTxt.generatedDraft) expectedBehaviorMet = false;
+        if (fileStateLabel !== 'Misconfigured') { expectedBehaviorMet = false; failureReason = 'fileStateLabel not Misconfigured'; }
+        if (result.files.llmsTxt.generatedDraft) { expectedBehaviorMet = false; failureReason = 'Draft generated for misconfigured'; }
       } else {
-        if (fileStateLabel !== 'Valid') expectedBehaviorMet = false;
+        if (fileStateLabel !== 'Valid') { expectedBehaviorMet = false; failureReason = 'fileStateLabel not Valid'; }
+        if (result.files.llmsTxt.generatedDraft) { expectedBehaviorMet = false; failureReason = 'Draft generated for valid markdown'; }
+      }
+
+      statusLabel = expectedBehaviorMet ? 'PASS' : 'FAIL';
+      if (!expectedBehaviorMet) {
+        console.error(`\nTest ${test.id} failed: ${failureReason}\n`);
       }
 
       statusLabel = expectedBehaviorMet ? 'PASS' : 'FAIL';

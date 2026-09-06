@@ -168,7 +168,9 @@ export async function runAudit(input: string): Promise<AuditResult> {
   const llmsTxt = await auditFile(llmsTxtUrl, origin, false);
 
   if (llmsTxt.fileStatus === 'Not Found') {
-    llmsTxt.generatedDraft = await generateLlmsTxt(domain, origin);
+    const generatorOrigin = llmsTxt.finalUrl ? new URL(llmsTxt.finalUrl).origin : origin;
+    const generatorDomain = llmsTxt.finalUrl ? new URL(llmsTxt.finalUrl).hostname : domain;
+    llmsTxt.generatedDraft = await generateLlmsTxt(generatorDomain, generatorOrigin);
   }
 
   // Step 3: Audit /llms-full.txt
