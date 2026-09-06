@@ -36,7 +36,7 @@ The checker runs a complete validation pipeline:
 
 ## Technical Implementation
 
-Here are a few key engineering decisions I made:
+Here are a few key engineering decisions that I made:
 
 * **Markdown parsing:** I use `unified` and `remark-parse` to parse Markdown into an AST instead of relying on fragile regex. 
 * **HTML analysis:** I use `cheerio` to inspect the DOM of linked pages, preserving headings, lists, and text while stripping out boilerplate.
