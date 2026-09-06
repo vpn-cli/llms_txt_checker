@@ -12,7 +12,7 @@ To be clear up front: this is a technical auditing tool. It evaluates observable
 
 The checker runs a complete validation pipeline:
 
-1. **Fetch**: Checks `/llms.txt` and verifies it's a genuine file, not a soft-404 or an empty SPA (Single Page Application) shell.
+1. **Fetch & Generate**: Checks `/llms.txt` and verifies it's a genuine file, not a soft-404 or an empty SPA (Single Page Application) shell. If genuinely missing, gracefully crawls the site's sitemap and metadata to automatically generate an authentic starting draft.
 2. **Parse & Validate**: Parses the Markdown into an AST (Abstract Syntax Tree) and validates its structure against the proposal's requirements.
 3. **Extract & Crawl**: Extracts linked URLs and crawls them concurrently.
 4. **Inspect**: Checks HTTP statuses, handles redirects, and inspects the DOM to ensure pages have real, server-rendered content.
@@ -42,6 +42,9 @@ Here are a few key engineering decisions that I made:
 * **HTML analysis:** I use `cheerio` to inspect the DOM of linked pages, preserving headings, lists, and text while stripping out boilerplate.
 * **Smart Crawling:** URL crawling is strictly controlled using `p-limit` to prevent overwhelming target servers.
 * **Soft-404 & SPA detection:** The checker compares the `/llms.txt` response against a deliberately non-existent path to detect missing-page templates and empty frontend JavaScript shells.
+* **Safe Payload Limits:** Oversized HTTP 200 responses are caught and bounded to 5MB (`TOO_LARGE`), preventing crawler exhaustion without falsely misclassifying them as broken links.
+* **Fallback Draft Generation:** Built a safe, 10-page sitemap crawler that extracts genuine `<title>` and `<meta name="description">` tags to bootstrap a viable `/llms.txt` for domains that currently lack one.
+* **Strict Scoring Boundaries:** Missing or soft-404 files correctly yield `N/A` for structural/link scores, preventing absent files from artificially inflating the technical total.
 * **Security:** Implemented SSRF protection, request timeouts, response-size limits, and bounded redirect handling.
 
 ---
