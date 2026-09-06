@@ -44,4 +44,5 @@ next-env.d.ts
 .agents/
 .agent/
 skills/
+architect_skills/
 COMPREHENSIVE_SUMMARY.md
