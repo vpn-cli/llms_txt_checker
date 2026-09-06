@@ -131,7 +131,7 @@ export default function Home() {
             failed={result.summary.failed}
           />
 
-          {result.links.length > 0 && <LinkTable links={result.links} />}
+          {result.links.length > 0 && <LinkTable links={result.links} stats={result.summary.linkStats} />}
 
           <FixList fixes={result.fixes} />
         </div>

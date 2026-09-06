@@ -29,9 +29,9 @@ const LINK_QUALITY_MAX = 10;
 function scoreAuthenticity(llmsTxt: FileAuditResult, llmsFullTxt: FileAuditResult | null): number {
   let score = 0;
 
-  // /llms.txt exists and is real Markdown: 30 points
+  // /llms.txt exists and is real Markdown: 35 points
   if (llmsTxt.classification.classification === 'REAL_MARKDOWN') {
-    score += 30;
+    score += 35;
   } else if (llmsTxt.classification.classification === 'SOFT_404') {
     score += 0; // Major penalty
   } else if (llmsTxt.classification.classification === 'SPA_SHELL') {
@@ -176,7 +176,7 @@ function generateFixes(
       severity: 'critical',
       title: '/llms.txt does not exist',
       explanation:
-        'No /llms.txt file was found. Without this file, AI systems cannot discover or index your documentation and resources. This is the most fundamental requirement.',
+        'No /llms.txt file was found. Without this file, automated agents cannot discover or index your documentation and resources.',
       recommendation:
         'Create a /llms.txt file at the root of your domain with your project name, summary, and links to key documentation.',
       pointsImpact: 30,
@@ -189,7 +189,7 @@ function generateFixes(
       severity: 'critical',
       title: '/llms.txt returns a soft-404',
       explanation:
-        'The server returns HTTP 200 but the content is a "page not found" template. AI crawlers see this as a valid response but cannot extract useful information. This is worse than a real 404 because it silently fails.',
+        'The server returns HTTP 200 but the content is a "page not found" template. Crawlers see this as a valid response but cannot extract useful information.',
       recommendation:
         'Configure your web server to serve a real Markdown file at /llms.txt, or return a proper 404 status if the file does not exist.',
       pointsImpact: 30,
@@ -202,7 +202,7 @@ function generateFixes(
       severity: 'critical',
       title: '/llms.txt returns an SPA shell',
       explanation:
-        'The server returns the same HTML application shell for /llms.txt as it does for any other path. AI crawlers cannot execute JavaScript — they see an empty HTML page instead of your documentation.',
+        'The server returns the same HTML application shell for /llms.txt as it does for any other path. Crawlers cannot execute JavaScript — they see an empty HTML page instead of your documentation.',
       recommendation:
         'Configure your web server or CDN to serve a static Markdown file at /llms.txt, bypassing your SPA\'s catch-all routing.',
       pointsImpact: 30,
@@ -267,7 +267,7 @@ function generateFixes(
       ruleId: 'broken-links',
       severity: brokenLinks.length >= 3 ? 'high' : 'medium',
       title: `${brokenLinks.length} linked page(s) are broken`,
-      explanation: `The following URLs return errors or are unreachable: ${brokenLinks.map((l) => l.url).join(', ')}. AI systems that follow these links will encounter errors and may lower their trust in your documentation.`,
+      explanation: `The following URLs return errors or are unreachable: ${brokenLinks.map((l) => l.url).join(', ')}. This reduces crawl reliability and creates an unreliable retrieval path.`,
       recommendation:
         'Fix or remove broken links. Ensure all linked URLs return healthy responses.',
       pointsImpact: Math.min(brokenLinks.length * 3, 15),
@@ -280,7 +280,7 @@ function generateFixes(
       ruleId: 'empty-html-links',
       severity: 'medium',
       title: `${emptyHtmlLinks.length} linked page(s) have no meaningful content`,
-      explanation: `These pages return HTML but have very little or no text content visible to a crawler: ${emptyHtmlLinks.map((l) => l.url).join(', ')}. AI systems cannot extract information from empty pages.`,
+      explanation: `These pages return HTML but have very little or no text content visible to a crawler: ${emptyHtmlLinks.map((l) => l.url).join(', ')}. Crawlers cannot extract information from empty pages.`,
       recommendation:
         'Ensure linked pages have server-rendered content. If they are SPA pages, implement server-side rendering or pre-rendering.',
       pointsImpact: Math.min(emptyHtmlLinks.length * 2, 10),
@@ -293,10 +293,22 @@ function generateFixes(
       ruleId: 'markdown-links-assignment',
       severity: 'medium',
       title: `${markdownLinks.length} linked page(s) serve Markdown instead of HTML`,
-      explanation: `These URLs serve Markdown text directly: ${markdownLinks.map((l) => l.url).join(', ')}. While this is highly valid and useful according to the llms.txt proposal, the literal assignment instructions require that linked URLs "serve real HTML to a crawler."`,
+      explanation: `These URLs serve Markdown text directly: ${markdownLinks.map((l) => l.url).join(', ')}. While this is valid under llms.txt proposal semantics, the assignment requirement expects linked URLs to serve real HTML.`,
       recommendation:
         'To satisfy the specific assignment constraint, ensure that your linked resources are served as HTML pages.',
       pointsImpact: 0, // Informational/Assignment specific, doesn't dock from score but acts as a warning
+    });
+  }
+
+  // Redirect check
+  if (llmsTxt.finalUrl && llmsTxt.finalUrl !== llmsTxt.url) {
+    fixes.push({
+      ruleId: 'llms-txt-redirect',
+      severity: 'low',
+      title: 'Redirected before resolving the final llms.txt resource',
+      explanation: `The request for ${llmsTxt.url} was redirected to ${llmsTxt.finalUrl}. This is a normal canonical redirect and does not invalidate the file.`,
+      recommendation: 'No action required if this redirect is intentional.',
+      pointsImpact: 0,
     });
   }
 
@@ -318,7 +330,7 @@ function generateFixes(
         ruleId: 'aeo-weak-evidence',
         severity: 'low',
         title: 'Many pages lack explicit source attribution',
-        explanation: 'Over half of your pages have weak or missing citations, reference sections, or explicit source attributions. AI models (GEO) look for these signals to establish trust and factual reliability.',
+        explanation: 'Over half of your pages have weak or missing citations, reference sections, or explicit source attributions. This heuristic measures observable content characteristics; it does not predict citation behavior.',
         recommendation: 'Add clear attribution to facts and claims, and include reference sections where appropriate.',
         pointsImpact: 0,
       });
@@ -329,7 +341,7 @@ function generateFixes(
         ruleId: 'aeo-weak-statistics',
         severity: 'low',
         title: 'Many pages lack concrete statistics or metrics',
-        explanation: 'Over half of your pages have very few concrete statistics, percentages, or measurements. AI models use these to establish factual authority.',
+        explanation: 'Over half of your pages have very few concrete statistics, percentages, or measurements. This provides fewer evidence-oriented signals.',
         recommendation: 'Incorporate concrete metrics, measurements, or statistics where appropriate in your technical documentation.',
         pointsImpact: 0,
       });
@@ -339,27 +351,16 @@ function generateFixes(
       fixes.push({
         ruleId: 'aeo-weak-extractability',
         severity: 'medium',
-        title: 'Content structure limits AI extractability',
-        explanation: 'Many of your pages lack clear answer-driven structures (e.g., "X provides..."), deep heading hierarchies, or structured definitions. This makes it harder for generative engines to confidently extract your claims.',
+        title: 'Content structure limits extractability',
+        explanation: 'Many of your pages lack clear answer-driven structures (e.g., "X provides..."), deep heading hierarchies, or structured definitions. This may make content less extractable for automated crawlers.',
         recommendation: 'Use descriptive headings, lists, and direct answer-style writing (X is Y) in your key documentation pages.',
         pointsImpact: 0,
       });
     }
   }
 
-  // /llms-full.txt
-  if (!llmsFullTxt || llmsFullTxt.classification.classification !== 'REAL_MARKDOWN') {
-    fixes.push({
-      ruleId: 'llms-full-txt',
-      severity: 'low',
-      title: '/llms-full.txt is not available',
-      explanation:
-        'The /llms-full.txt file provides a complete, single-file version of your documentation. While optional, it makes it easier for AI systems to ingest your entire documentation corpus.',
-      recommendation:
-        'Create a /llms-full.txt file containing the full text of your key documentation pages.',
-      pointsImpact: 5,
-    });
-  }
+  // Note: /llms-full.txt missing is intentionally NOT added as a fix 
+  // because it is strictly optional and should not be a ranked negative fix.
 
   // Sort by severity then by points impact
   const severityOrder: Record<Severity, number> = {

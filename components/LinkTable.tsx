@@ -2,6 +2,14 @@ import type { LinkCheckResult, LinkClassification } from '@/types/audit';
 
 interface LinkTableProps {
   links: LinkCheckResult[];
+  stats: {
+    markdownReferences: number;
+    uniqueUrls: number;
+    auditedUrls: number;
+    healthy: number;
+    broken: number;
+    unclassified: number;
+  };
 }
 
 function statusBadge(status: LinkClassification) {
@@ -26,21 +34,23 @@ function statusBadge(status: LinkClassification) {
   );
 }
 
-export default function LinkTable({ links }: LinkTableProps) {
+export default function LinkTable({ links, stats }: LinkTableProps) {
   if (links.length === 0) return null;
-
-  const healthy = links.filter((l) => l.status === 'HTML_CONTENT' || l.status === 'MARKDOWN_CONTENT').length;
-  const broken = links.filter((l) => l.status === 'BROKEN' || l.status === 'SERVER_ERROR').length;
 
   return (
     <div id="link-table" className="animate-fade-in" style={{ animationDelay: '0.4s' }}>
-      <div className="flex items-center justify-between mb-3">
+      <div className="flex flex-col mb-4 gap-2">
         <h2 className="text-sm font-semibold text-[var(--foreground)] uppercase tracking-wider">
-          Linked URLs ({links.length})
+          Link Crawl Results
         </h2>
-        <div className="flex gap-3 text-xs">
-          <span className="text-[var(--success)]">{healthy} healthy</span>
-          <span className="text-[var(--error)]">{broken} broken</span>
+        <div className="flex flex-wrap gap-6 text-xs bg-[var(--card-bg)] border border-[var(--card-border)] p-3 rounded-lg">
+          <div className="flex flex-col"><span className="text-[var(--muted)] text-[10px] uppercase tracking-wider mb-0.5">Markdown Link References</span><span className="font-mono text-sm">{stats.markdownReferences}</span></div>
+          <div className="flex flex-col"><span className="text-[var(--muted)] text-[10px] uppercase tracking-wider mb-0.5">Unique URLs</span><span className="font-mono text-sm">{stats.uniqueUrls}</span></div>
+          <div className="flex flex-col"><span className="text-[var(--muted)] text-[10px] uppercase tracking-wider mb-0.5">Audited URLs</span><span className="font-mono text-sm">{stats.auditedUrls}</span></div>
+          <div className="w-[1px] bg-[var(--card-border)]"></div>
+          <div className="flex flex-col"><span className="text-[var(--success)] text-[10px] uppercase tracking-wider mb-0.5">Healthy</span><span className="font-mono text-sm text-[var(--success)]">{stats.healthy}</span></div>
+          <div className="flex flex-col"><span className="text-[var(--error)] text-[10px] uppercase tracking-wider mb-0.5">Broken</span><span className="font-mono text-sm text-[var(--error)]">{stats.broken}</span></div>
+          <div className="flex flex-col"><span className="text-[var(--warning)] text-[10px] uppercase tracking-wider mb-0.5">Unclassified</span><span className="font-mono text-sm text-[var(--warning)]">{stats.unclassified}</span></div>
         </div>
       </div>
 

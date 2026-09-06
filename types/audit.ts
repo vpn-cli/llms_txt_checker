@@ -173,6 +173,14 @@ export interface AuditResult {
     passed: number;
     warnings: number;
     failed: number;
+    linkStats: {
+      markdownReferences: number;
+      uniqueUrls: number;
+      auditedUrls: number;
+      healthy: number;
+      broken: number;
+      unclassified: number;
+    };
   };
   timestamp: string;
 }

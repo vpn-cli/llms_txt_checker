@@ -158,14 +158,57 @@ export async function runAudit(input: string): Promise<AuditResult> {
 
   // Step 4: Extract and check links (only if /llms.txt is real Markdown)
   let links: LinkCheckResult[] = [];
+  let markdownReferences = 0;
+  let uniqueUrls = 0;
+
   if (llmsTxt.parsed && llmsTxt.parsed.links.length > 0) {
+    markdownReferences = llmsTxt.parsed.links.length;
+
     // Resolve relative URLs against origin
     const resolvedLinks = llmsTxt.parsed.links.map((link) => ({
       ...link,
       url: new URL(link.url, origin).href,
     }));
-    links = await checkLinks(resolvedLinks);
+
+    // Deduplicate by URL
+    const seenUrls = new Set<string>();
+    const uniqueLinks = resolvedLinks.filter((link) => {
+      if (seenUrls.has(link.url)) return false;
+      seenUrls.add(link.url);
+      return true;
+    });
+
+    uniqueUrls = uniqueLinks.length;
+    links = await checkLinks(uniqueLinks);
   }
+
+  const auditedUrls = links.length;
+  let healthy = 0;
+  let broken = 0;
+  let unclassified = 0;
+
+  for (const l of links) {
+    if (l.status === 'HTML_CONTENT' || l.status === 'MARKDOWN_CONTENT') {
+      healthy++;
+    } else if (l.status === 'BROKEN' || l.status === 'SERVER_ERROR') {
+      broken++;
+    } else {
+      unclassified++;
+    }
+  }
+
+  if (healthy + broken + unclassified !== auditedUrls) {
+    throw new Error(`Link status counts do not sum to audited URLs! Expected ${auditedUrls}, got ${healthy + broken + unclassified}`);
+  }
+
+  const linkStats = {
+    markdownReferences,
+    uniqueUrls,
+    auditedUrls,
+    healthy,
+    broken,
+    unclassified,
+  };
 
   // Step 5: Calculate score
   const { score, grade, breakdown, fixes } = calculateScore(
@@ -194,7 +237,7 @@ export async function runAudit(input: string): Promise<AuditResult> {
     },
     links,
     fixes,
-    summary: { passed, warnings, failed },
+    summary: { passed, warnings, failed, linkStats },
     timestamp: new Date().toISOString(),
   };
 }
