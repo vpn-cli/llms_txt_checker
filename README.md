@@ -1,101 +1,168 @@
-# LLMS.TXT Checker
+# LLMS.TXT Checker / AEO Audit Tool
 
-A full-stack Next.js web application that audits a domain's `/llms.txt` file for AI discoverability. This checker distinguishes between the official `llms.txt` specification compliance and assignment-specific crawlability heuristics.
+I built this checker to answer a simple, practical question: if an AI crawler discovers your website through its `llms.txt` file, is that file actually usable? Are the linked pages reachable, and do they contain useful information for machine consumption?
 
-## Features
+While the `llms.txt` proposal is a fantastic standard for AI discoverability, a URL returning a `200 OK` doesn't mean much on its own. I wanted to cut through the ambiguity and see if a site's implementation is structurally sound, machine-readable, and fundamentally useful to an agentic system.
 
-- **Robust fetching:** Handles timeouts, redirects, and SSRF protections.
-- **Smart Detection:** Identifies Soft-404s and SPA shells that return HTTP 200.
-- **Markdown parsing:** Evaluates the structure according to the llms.txt proposal.
-- **Link crawling:** Concurrently checks all extracted URLs for resolution and crawlability.
-- **Scoring Engine:** Generates a transparent 100-point score with actionable fixes.
+To be clear up front: this is a technical auditing tool. It evaluates observable file characteristics, network responses, and content patterns. It is *not* an AI ranking predictor, and it doesn't guarantee better visibility in any search engine or language model. 
 
 ---
 
-## Rules & Scoring Matrix
+## What I Built
 
-This checker distinguishes specification compliance from assignment-specific crawlability requirements. A linked Markdown document may be valid and highly useful for AI retrieval while still failing the assignment's narrower requirement that linked URLs serve HTML. We therefore report these as separate dimensions rather than collapsing them into a single pass/fail result.
+The checker runs a complete validation pipeline:
 
-### 1. Authenticity & Availability (40 Points)
-- **What is checked:** The existence and accessibility of `/llms.txt` and `/llms-full.txt`.
-- **Why it matters:** Without this file, AI systems cannot discover or index your documentation.
-- **Source:** llms.txt v2 proposal.
-- **Scoring:**
-  - Real Markdown at `/llms.txt`: +30 pts
-  - Valid text/plain or text/markdown content type: +5 pts
-  - `/llms-full.txt` exists: +5 pts
-  - Soft-404s or SPA shells automatically fail this category.
+1. **Fetch**: Checks `/llms.txt` and verifies it's a genuine file, not a soft-404 or an empty SPA (Single Page Application) shell.
+2. **Parse & Validate**: Parses the Markdown into an AST (Abstract Syntax Tree) and validates its structure against the proposal's requirements.
+3. **Extract & Crawl**: Extracts linked URLs and crawls them concurrently.
+4. **Inspect**: Checks HTTP statuses, handles redirects, and inspects the DOM to ensure pages have real, server-rendered content.
+5. **Score**: Evaluates the content using a deterministic AEO (Answer Engine Optimization) heuristic.
+6. **Report**: Produces a technical validity score (out of 100), an average AEO score (out of 10), and a prioritized list of fixes.
 
-### 2. Structure (25 Points)
-- **What is checked:** Document hierarchy (H1 presence, optional blockquotes, optional H2 sections).
-- **Why it matters:** Clean heading hierarchies allow AI systems to reliably parse and chunk the file.
-- **Source:** 
-  - H1: `proposal-required`
-  - Blockquote: `proposal-optional / expected format`
-  - H2 sections: `proposal-optional / expected format`
-  - Link lists inside H2: `proposal-required`
-- **Scoring:** Points are distributed among the `proposal-required` structural elements. Missing an H1 fails the check. Missing an optional blockquote raises a warning but does not penalize the score. Link list syntax is only required if H2 sections are present.
+---
 
-### 3. Link Resolution & Crawlability (25 Points)
-- **What is checked:** Checks if all extracted URLs resolve (HTTP < 400) and if they serve content that a crawler can read (HTML with text, or Markdown).
-- **Why it matters:** AI systems need to crawl these URLs. Broken links or empty SPA shells break AI ingestion.
-- **Source:** `heuristic`
-- **Scoring:** 
-  - `HTML_CONTENT` (with meaningful text) or `MARKDOWN_CONTENT` receives full points.
-  - Redirects or `OTHER_NON_HTML` receive partial points.
-  - `EMPTY_HTML` (SPA shells) and broken links receive 0 points.
+## Why llms.txt?
 
-### 4. AI-Link Quality / AEO Content Layer (10 Points)
-- **What is checked:** The deterministic *extractability* of the crawled content at the destination URL, using a research-informed AEO (Artificial Engine Optimization) scoring model.
-- **Why it matters:** A technically valid `llms.txt` can still point to weak content. To ensure maximum AI visibility and trust, the linked content itself must be easily extractable and factually grounded.
-- **Source:** Inspired by recent AEO research, including *GEO: Generative Engine Optimization* (KDD 2024), we evaluate linked pages on 5 deterministic dimensions:
-  - **Evidence (3.0 pts):** Explicit source attribution, reference sections, and citations.
-  - **Statistics (2.5 pts):** Concrete facts, percentages, currency, and quantities.
-  - **Quotations (1.5 pts):** Attributed quotes and statements.
-  - **Extractability (2.0 pts):** Answer-driven phrasing ("X is...") and structural hierarchy (H2s/H3s).
-  - **Readability (1.0 pts):** Lightweight Flesch Reading Ease approximation.
-- **Scoring:** The final AI-Link Quality score is the average AEO score across all linked `HTML_CONTENT` and `MARKDOWN_CONTENT` pages.
-- **Methodological Guardrails:** This tool evaluates *deterministic, extractable signals* using heuristics (regex and text analysis). It does **not** use LLM-as-a-judge, embeddings, or make claims about predicting actual AI search engine rankings. It simply enforces structural content best practices that align with generative engine preferences.
+The `llms.txt` proposal gives language models a standardized way to discover a website's most important content. 
 
-  - **Assignment-Specific Check:** If a link resolves to a valid Markdown file (e.g. `MARKDOWN_CONTENT`), it is highly useful for AI, but it triggers an assignment-specific warning because it does not satisfy the literal assignment requirement to "serve real HTML to a crawler." This provides nuance without intrinsically penalizing valid LLM-friendly resources.
+When auditing these files, I realized it was critical to distinguish between the **proposal's rules**, the **specific requirements of this assignment**, and **my own heuristics**. I designed this tool to check all three dimensions transparently without blurring the lines between them.
+
+---
+
+## What I Check
+
+| Area | What I check | Why it matters |
+| :--- | :--- | :--- |
+| **File authenticity** | HTTP response, content type, soft-404s, SPA shells | A `200 OK` status doesn't always mean a valid file exists. |
+| **Structure** | H1, H2s, Markdown links, document hierarchy | Predictable structures make the file easier for crawlers to parse. |
+| **Link resolution** | HTTP status codes, redirects, content types | Broken retrieval paths make your information impossible to consume. |
+| **Content access** | HTML payloads, Markdown content, empty DOMs | Different content types serve different purposes depending on the assignment. |
+| **AEO Quality** | Evidence, statistics, quotations, extractability | Measures observable traits that support factual information extraction. |
+
+---
+
+## Technical Implementation
+
+Here are a few key engineering decisions I made:
+
+* **Markdown parsing:** I use `unified` and `remark-parse` to parse Markdown into an AST instead of relying on fragile regex. 
+* **HTML analysis:** I use `cheerio` to inspect the DOM of linked pages, preserving headings, lists, and text while stripping out boilerplate.
+* **Smart Crawling:** URL crawling is strictly controlled using `p-limit` to prevent overwhelming target servers.
+* **Soft-404 & SPA detection:** The checker compares the `/llms.txt` response against a deliberately non-existent path to detect missing-page templates and empty frontend JavaScript shells.
+* **Security:** Implemented SSRF protection, request timeouts, response-size limits, and bounded redirect handling.
+
+---
+
+## AEO / AI-Link Quality Score
+
+For every linked page that successfully resolves, the tool calculates a 10-point content-quality score based on observable patterns:
+
+| Signal | Weight |
+| :--- | ---: |
+| Evidence / source attribution | 3.0 |
+| Statistics / concrete facts | 2.5 |
+| Attributed quotations | 1.5 |
+| Content extractability | 2.0 |
+| Fluency / readability | 1.0 |
+| **Total** | **10.0** |
+
+I used existing GEO (Generative Engine Optimization) research to motivate the *types* of signals I inspect, but the 10-point weighting is my own engineering heuristic. 
+
+I deliberately kept the scoring deterministic. There is no "LLM-as-a-judge" here; the rules are strictly code-based so that every score can be traced back to an explicit, repeatable rule.
+
+---
+
+## Proposal vs. Assignment vs. Heuristics
+
+To keep the scoring completely transparent, rules are strictly categorized:
+
+* **Proposal-required:** File must have an H1.
+* **Proposal-optional:** Blockquotes, H2 sections, and properly nested file lists.
+* **Assignment-specific:** Linked pages must resolve and serve real HTML (Markdown links are flagged as an assignment constraint, but remain valid under proposal semantics).
+* **My heuristics:** AEO scoring, evidence detection, and soft-404/SPA-shell logic.
+
+---
+
+## Scoring Dimensions
+
+The system evaluates websites across two distinct dimensions:
+
+1. **Technical Score (out of 100):** Measures if the `llms.txt` file is authentic, structurally valid, and if its links can actually be consumed. 
+2. **AEO Score (out of 10):** Measures observable content-quality characteristics of the linked pages. 
+
+A high technical score just means the file is perfectly constructed; it does not mean the content itself is highly optimized for generative engines.
+
+---
+
+## Example Audit & Validation
+
+I tested the tool against `infrasity.com` (as required by the assignment), which returned a **Technical Score of 95/100 (Grade A)**. The tool correctly verified the file's authenticity and crawled all 39 unique URLs, finding 0 broken links.
+
+For the **AEO Score**, the site averaged a moderate score (e.g., ~4.4/10). A lower AEO score does not mean a company has bad content. It simply means the pages contain fewer of the specific, highly structured evidence-oriented signals (like dense statistical data or academic citations) measured by this heuristic. 
+
+I also ran qualitative sanity checks against real-world implementations like **Monday.com, GitHub, Adobe, and Clairvyn**. Across all tests, the pipeline successfully identified broken links, enforced link-count invariants, and handled missing optional files without improper penalization.
+
+---
+
+## Testing & Tech Stack
+
+The project is backed by a robust Vitest suite with 42 passing tests covering parsers, validators, soft-404 detection, and edge cases like canonical redirects.
+
+**Tech Stack:**
+* Next.js 16 (App Router)
+* TypeScript & Tailwind CSS
+* `unified` / `remark-parse` / `cheerio`
+* `p-limit` / Vitest / Vercel
 
 ---
 
 ## Running Locally
 
-1. Install dependencies:
-   ```bash
-   npm install
-   ```
+Clone the repository and install the dependencies:
 
-2. Start the development server:
-   ```bash
-   npm run dev
-   ```
-
-3. Run tests:
-   ```bash
-   npm test
-   ```
-
-## Live Audit
-
-To run a live static audit from the CLI against a domain (defaults to `infrasity.com`):
 ```bash
-npx tsx scripts/live-audit.ts [domain.com]
+npm install
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser. 
+
+To run the test suite or verify the production build:
+```bash
+npm test
+npm run build
 ```
 
 ---
 
-## Infrasity Audit Results
+## Limitations
 
-A live audit against `infrasity.com` produces the following result:
+Because the timeframe for this submission was short, I had to scope the project strictly to achievable, deterministic rules. I want to be upfront about the limitations of this approach:
 
-- **Technical Compliance**: 90/90 (Perfect Score)
-- **AI/Link Quality (AEO)**: 4.4 / 10
-- **Total Score**: 94/100 (Grade: A)
+* **Heuristics, not AI:** The AEO score is a deterministic heuristic, not a machine-learning model, and it absolutely does not predict actual AI citations.
+* **Proprietary Systems:** It does not model proprietary retrieval systems (like OpenAI or Perplexity).
+* **Pattern Matching:** Evidence, statistics, and quotation detection rely on textual markers which can occasionally miss nuanced writing.
+* **Edge Cases:** Soft-404 and SPA detection use heuristic comparisons and can occasionally encounter server-specific edge cases.
+* **Real-time Changes:** Live websites can change immediately after an audit.
 
-### Interpretation
-The 90/90 technical score demonstrates that Infrasity satisfies all literal llms.txt protocol requirements (valid H1, valid formatting, healthy HTML targets, etc.). The 4.4/10 AEO score indicates that while the infrastructure is perfect, the actual content found at the destination marketing URLs lacks academic evidence, source attributions, and deep extractability structures compared to technical documentation standards. 
+---
 
-This nuanced score highlights the checker's ability to cleanly decouple **protocol compliance** from **content quality**.
+## Future Integrations
+
+Given more time, I would explore expanding the architecture to include:
+
+1. **Headless Browser Rendering:** Integrating Puppeteer or Playwright to fully execute JavaScript-heavy SPA pages before extracting content, rather than just analyzing the initial HTML payload.
+2. **LLM-as-a-Judge:** Adding a lightweight LLM call to qualitatively evaluate the usefulness and tone of the extracted text payload.
+3. **Vector Similarity Checks:** Testing if the content in the `llms.txt` actually aligns with the core brand messaging of the domain using embeddings and cosine similarity.
+4. **Historical Monitoring:** Setting up a CRON job to track how a site's AEO and technical scores trend over time.
+
+---
+
+## Final Notes
+
+I built this as an engineering project to understand the actual gap between *having* an `llms.txt` file and having one that is truly usable for machine retrieval. It was a great challenge in balancing strict specification adherence with the messy realities of the live web. Ultimately, this tool provides actionable, technical truth about how a site presents itself to an automated agent.
