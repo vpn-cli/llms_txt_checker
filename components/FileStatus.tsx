@@ -27,15 +27,30 @@ function classificationBadge(classification: FileClassification) {
   );
 }
 
+function FileStatusBadge({ status }: { status: import('@/types/audit').FileStatus }) {
+  const isOk = status === 'Valid';
+  const isErr = status === 'Not Found' || status === 'Misconfigured';
+  const color = isOk ? 'var(--success)' : status === 'Misconfigured' ? 'var(--warning)' : 'var(--error)';
+  const bg = isOk ? 'rgba(34,197,94,0.12)' : status === 'Misconfigured' ? 'rgba(234,179,8,0.12)' : 'rgba(239,68,68,0.12)';
+  return (
+    <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium" style={{ backgroundColor: bg, color }}>
+      Status: {status}
+    </span>
+  );
+}
+
 function FileCard({ file, label }: { file: FileAuditResult; label: string }) {
   return (
-    <div className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-xl p-4">
+    <div className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-xl p-4 flex flex-col">
       <div className="flex items-center justify-between mb-3">
         <code className="text-sm font-mono text-[var(--foreground)]">{label}</code>
-        {classificationBadge(file.classification.classification)}
+        <div className="flex gap-2">
+          {classificationBadge(file.classification.classification)}
+          <FileStatusBadge status={file.fileStatus} />
+        </div>
       </div>
 
-      <div className="space-y-1.5 text-xs text-[var(--muted)]">
+      <div className="space-y-1.5 text-xs text-[var(--muted)] flex-1">
         {file.httpStatus !== null && (
           <div className="flex justify-between">
             <span>HTTP Status</span>
@@ -83,6 +98,21 @@ export default function FileStatus({ llmsTxt, llmsFullTxt }: FileStatusProps) {
   return (
     <div id="file-status" className="space-y-3 animate-fade-in" style={{ animationDelay: '0.1s' }}>
       <h2 className="text-sm font-semibold text-[var(--foreground)] uppercase tracking-wider">File Status</h2>
+      
+      {llmsTxt.fileStatus === 'Not Found' && (
+        <div className="bg-[var(--critical-bg)] border border-red-500/20 rounded-xl p-4 text-sm text-[var(--foreground)]">
+          <p className="mb-1 text-[var(--error)] font-medium">No llms.txt file found.</p>
+          <p className="text-[var(--muted)]">The site does not currently expose an llms.txt file. As a result, the site is missing a structured discovery path for AI agents.</p>
+        </div>
+      )}
+
+      {llmsTxt.fileStatus === 'Misconfigured' && (
+        <div className="bg-[var(--medium-bg)] border border-orange-500/20 rounded-xl p-4 text-sm text-[var(--foreground)]">
+          <p className="mb-1 text-[var(--warning)] font-medium">Endpoint Misconfigured</p>
+          <p className="text-[var(--muted)]">The requested /llms.txt endpoint exists at the HTTP level but is not serving a real Markdown llms.txt file. This is often worse than a genuine 404 because the owner may believe the endpoint is working correctly.</p>
+        </div>
+      )}
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <FileCard file={llmsTxt} label="/llms.txt" />
         {llmsFullTxt ? (
@@ -93,6 +123,24 @@ export default function FileStatus({ llmsTxt, llmsFullTxt }: FileStatusProps) {
           </div>
         )}
       </div>
+
+      {llmsTxt.generatedDraft && (
+        <div className="mt-6 space-y-2">
+          <h3 className="text-sm font-semibold text-[var(--foreground)]">Generated llms.txt Draft</h3>
+          <p className="text-xs text-[var(--muted)]">This draft was auto-generated from the site's current publicly accessible metadata and pages via its sitemap. It should be reviewed before production use.</p>
+          <div className="relative">
+            <pre className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-xl p-4 overflow-x-auto text-xs font-mono text-[var(--foreground)]">
+              <code>{llmsTxt.generatedDraft}</code>
+            </pre>
+            <button
+              onClick={() => navigator.clipboard.writeText(llmsTxt.generatedDraft!)}
+              className="absolute top-2 right-2 px-2 py-1 bg-[var(--background)] border border-[var(--card-border)] rounded text-xs text-[var(--muted)] hover:text-[var(--foreground)] hover:border-[var(--accent)] transition-colors"
+            >
+              Copy
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

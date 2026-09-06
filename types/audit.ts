@@ -144,9 +144,12 @@ export interface Fix {
 }
 
 // ─── File Audit Result ──────────────────────────────────────────────
+export type FileStatus = 'Valid' | 'Not Found' | 'Misconfigured';
+
 export interface FileAuditResult {
   url: string;
   exists: boolean;
+  fileStatus: FileStatus;
   httpStatus: number | null;
   contentType: string | null;
   finalUrl: string | null;
@@ -155,6 +158,7 @@ export interface FileAuditResult {
   parsed: ParsedMarkdown | null;
   checks: ValidationCheck[];
   error: string | null;
+  generatedDraft: string | null;
 }
 
 // ─── Full Audit Result ──────────────────────────────────────────────

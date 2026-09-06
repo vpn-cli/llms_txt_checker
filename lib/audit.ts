@@ -21,6 +21,7 @@ import { parseMarkdown } from './markdown-parser';
 import { validateStructure } from './validator';
 import { checkLinks } from './link-checker';
 import { calculateScore } from './scoring';
+import { generateLlmsTxt } from './generator';
 import type {
   AuditResult,
   FileAuditResult,
@@ -41,6 +42,7 @@ async function auditFile(
   isFullTxt = false
 ): Promise<FileAuditResult> {
   const fetchResult = await safeFetch(fileUrl);
+  const domain = new URL(origin).hostname;
 
   // If unreachable or error, return early
   if (fetchResult.error && fetchResult.status === null) {
@@ -52,6 +54,7 @@ async function auditFile(
     return {
       url: fileUrl,
       exists: false,
+      fileStatus: 'Not Found',
       httpStatus: null,
       contentType: null,
       finalUrl: null,
@@ -60,6 +63,7 @@ async function auditFile(
       parsed: null,
       checks: [],
       error: fetchResult.error,
+      generatedDraft: null,
     };
   }
 
@@ -73,6 +77,7 @@ async function auditFile(
     return {
       url: fileUrl,
       exists: false,
+      fileStatus: 'Not Found',
       httpStatus: fetchResult.status,
       contentType: fetchResult.contentType,
       finalUrl: fetchResult.finalUrl,
@@ -81,6 +86,7 @@ async function auditFile(
       parsed: null,
       checks: [],
       error: null,
+      generatedDraft: null,
     };
   }
 
@@ -111,6 +117,13 @@ async function auditFile(
   // Classify
   const classification = classifyResponse(fetchResult, soft404Result, spaResult);
 
+  let fileStatus: import('@/types/audit').FileStatus = 'Misconfigured';
+  if (classification.classification === 'REAL_MARKDOWN') {
+    fileStatus = 'Valid';
+  } else if (classification.classification === 'NOT_FOUND' || classification.classification === 'UNREACHABLE') {
+    fileStatus = 'Not Found';
+  }
+
   // Parse and validate if it looks like real Markdown
   let parsed = null;
   let checks: ValidationCheck[] = [];
@@ -130,6 +143,7 @@ async function auditFile(
   return {
     url: fileUrl,
     exists: classification.classification !== 'NOT_FOUND',
+    fileStatus,
     httpStatus: fetchResult.status,
     contentType: fetchResult.contentType,
     finalUrl: fetchResult.finalUrl,
@@ -138,6 +152,7 @@ async function auditFile(
     parsed,
     checks,
     error: fetchResult.error,
+    generatedDraft: null,
   };
 }
 
@@ -152,6 +167,10 @@ export async function runAudit(input: string): Promise<AuditResult> {
 
   // Step 2: Audit /llms.txt
   const llmsTxt = await auditFile(llmsTxtUrl, origin, false);
+
+  if (llmsTxt.fileStatus === 'Not Found') {
+    llmsTxt.generatedDraft = await generateLlmsTxt(domain, origin);
+  }
 
   // Step 3: Audit /llms-full.txt
   const llmsFullTxt = await auditFile(llmsFullTxtUrl, origin, true);

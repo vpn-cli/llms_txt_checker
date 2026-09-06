@@ -7,6 +7,8 @@ describe('scoring engine', () => {
     const llmsTxt: FileAuditResult = {
       url: 'https://example.com/llms.txt',
       exists: true,
+      fileStatus: 'Valid',
+      generatedDraft: null,
       httpStatus: 200,
       contentType: 'text/markdown',
       finalUrl: null,
@@ -23,6 +25,8 @@ describe('scoring engine', () => {
     const llmsFullTxt: FileAuditResult = {
       url: 'https://example.com/llms-full.txt',
       exists: true,
+      fileStatus: 'Valid',
+      generatedDraft: null,
       httpStatus: 200,
       contentType: 'text/markdown',
       finalUrl: null,
@@ -69,6 +73,8 @@ describe('scoring engine', () => {
     const llmsTxt: FileAuditResult = {
       url: 'https://example.com/llms.txt',
       exists: true,
+      fileStatus: 'Valid',
+      generatedDraft: null,
       httpStatus: 200,
       contentType: 'text/html',
       finalUrl: null,
@@ -90,6 +96,8 @@ describe('scoring engine', () => {
     const llmsTxt: FileAuditResult = {
       url: 'https://example.com/llms.txt',
       exists: true,
+      fileStatus: 'Valid',
+      generatedDraft: null,
       httpStatus: 200,
       contentType: 'text/markdown',
       finalUrl: null,
@@ -135,6 +143,8 @@ describe('scoring engine', () => {
     const llmsTxt: FileAuditResult = {
       url: 'https://example.com/llms.txt',
       exists: true,
+      fileStatus: 'Valid',
+      generatedDraft: null,
       httpStatus: 200,
       contentType: 'text/markdown',
       finalUrl: 'https://www.example.com/llms.txt', // Final URL is different (redirected)
