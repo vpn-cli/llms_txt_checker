@@ -42,7 +42,6 @@ async function auditFile(
   isFullTxt = false
 ): Promise<FileAuditResult> {
   const fetchResult = await safeFetch(fileUrl);
-  const domain = new URL(origin).hostname;
 
   // If unreachable or error, return early
   if (fetchResult.error && fetchResult.status === null) {

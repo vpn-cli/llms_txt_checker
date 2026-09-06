@@ -30,7 +30,6 @@ function classificationBadge(classification: FileClassification) {
 
 function FileStatusBadge({ status }: { status: import('@/types/audit').FileStatus }) {
   const isOk = status === 'Valid';
-  const isErr = status === 'Not Found' || status === 'Misconfigured';
   const color = isOk ? 'var(--success)' : status === 'Misconfigured' ? 'var(--warning)' : 'var(--error)';
   const bg = isOk ? 'rgba(34,197,94,0.12)' : status === 'Misconfigured' ? 'rgba(234,179,8,0.12)' : 'rgba(239,68,68,0.12)';
   return (
@@ -128,7 +127,7 @@ export default function FileStatus({ llmsTxt, llmsFullTxt }: FileStatusProps) {
       {llmsTxt.generatedDraft && (
         <div className="mt-6 space-y-2">
           <h3 className="text-sm font-semibold text-[var(--foreground)]">Generated llms.txt Draft</h3>
-          <p className="text-xs text-[var(--muted)]">This draft was auto-generated from the site's current publicly accessible metadata and pages via its sitemap. It should be reviewed before production use.</p>
+          <p className="text-xs text-[var(--muted)]">This draft was auto-generated from the site&apos;s current publicly accessible metadata and pages via its sitemap. It should be reviewed before production use.</p>
           <div className="relative">
             <pre className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-xl p-4 overflow-x-auto text-xs font-mono text-[var(--foreground)]">
               <code>{llmsTxt.generatedDraft}</code>

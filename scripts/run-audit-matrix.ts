@@ -72,18 +72,18 @@ async function runTestMatrix() {
 
   const summary = {
     runTimestamp: new Date().toISOString(),
-    tests: [] as any[],
+    tests: [] as Record<string, unknown>[],
   };
 
   // Start mock server
   await new Promise<void>((resolve) => {
     mockServer.listen(0, '127.0.0.1', () => resolve());
   });
-  const port = (mockServer.address() as any).port;
+  const port = (mockServer.address() as import('net').AddressInfo).port;
 
   // Intercept fetch to bypass SSRF for fixtures
   const originalFetch = global.fetch;
-  global.fetch = async (url: any, options: any) => {
+  global.fetch = async (url: RequestInfo | URL, options?: RequestInit) => {
     let urlStr = url.toString();
     if (urlStr.includes('fixture-missing.com') || 
         urlStr.includes('fixture-misconfigured.com') || 
@@ -92,8 +92,8 @@ async function runTestMatrix() {
       urlStr = urlStr.replace(originalHost, `127.0.0.1:${port}`);
       // add host header to trick the mock server
       options = options || {};
-      options.headers = options.headers || {};
-      options.headers['Host'] = originalHost;
+      options.headers = (options.headers as Record<string, string>) || {};
+      (options.headers as Record<string, string>)['Host'] = originalHost;
     }
     return originalFetch(urlStr, options);
   };
@@ -183,7 +183,7 @@ async function runTestMatrix() {
       md += `- **Healthy Links:** ${result.summary.linkStats.healthy}\n`;
       md += `- **Broken Links:** ${result.summary.linkStats.broken}\n`;
       
-      let htmlLinks = 0, markdownLinks = 0, otherLinks = 0, spaShells = 0, soft404s = 0;
+      let htmlLinks = 0, markdownLinks = 0, otherLinks = 0, spaShells = 0;
       for (const link of result.links) {
         if (link.status === 'HTML_CONTENT') htmlLinks++;
         if (link.status === 'MARKDOWN_CONTENT') markdownLinks++;
@@ -228,9 +228,10 @@ async function runTestMatrix() {
         responseFile: `${test.id}/response.json`,
       });
       
-    } catch (err: any) {
+    } catch (err: unknown) {
       statusLabel = 'FAIL';
-      const isNetworkError = err.message.includes('fetch') || err.message.includes('timeout') || err.message.includes('network');
+      const error = err as Error;
+      const isNetworkError = error.message.includes('fetch') || error.message.includes('timeout') || error.message.includes('network');
       if (isNetworkError) {
         networkErrors++;
         statusLabel = 'NETWORK';
@@ -240,7 +241,7 @@ async function runTestMatrix() {
       
       const errorData = {
         testStatus: isNetworkError ? 'NETWORK_ERROR' : 'ERROR',
-        error: err.message,
+        error: error.message,
         timestamp: new Date().toISOString(),
         domain: reqData.domain,
       };
@@ -251,7 +252,7 @@ async function runTestMatrix() {
         domain: reqData.domain,
         environment: test.type,
         status: isNetworkError ? 'NETWORK_ERROR' : 'ERROR',
-        error: err.message,
+        error: error.message,
       });
     }
 
